@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+   
+<mapper namespace="com.product.sys.role.dao.RoleMapper">  
+	
+<!-- 	<resultMap type="com.product.sys.role.po.RolePO" id="roleMap">
+		<id property="roleID" column="roleid"/>
+		<result property="roleName" column="rolename" />
+		<result property="status" column="status" />
+		<collection property="resources" ofType="com.product.sys.resource.po.ResourcePO">
+            <id property="resourceid" column="resourceid" />  
+            <result property="resourceName" column="resourcename" /> 
+            <result property="url" column="url" />
+            <result property="status" column="status" />  
+        </collection>
+	</resultMap> -->
+    
+<!--     <select id="getRoleByRoleID" parameterType="string" resultMap="roleMap">  
+       select res.*,r.* from COM_RESOURCE res,COM_ROLERESOURCE rr,COM_ROLE r where res.resourceid=rr.resourceid and rr.roleid=r.roleid and r.roleid=#{roleid}
+    </select>   -->
+    <select id="getRoleByUserName" parameterType="string" resultType="com.product.sys.role.po.RolePO">  
+       select r.* from COM_USERINFO u,COM_USERROLE ur,COM_ROLE r where u.uid=ur.uid and ur.rid=r.rid and u.username=#{userName}
+    </select>  
+
+       
+</mapper>  

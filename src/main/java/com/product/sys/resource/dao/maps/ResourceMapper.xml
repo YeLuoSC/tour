@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+   
+<mapper namespace="com.product.sys.resource.dao.ResourceMapper">  
+	
+	<select id="getResourceByRoleID" parameterType="string" resultType="com.product.sys.resource.po.ResourcePO">  
+       select res.* from COM_RESOURCE res,COM_ROLERESOURCE rr,COM_ROLE r where res.resourceid=rr.resourceid and rr.roleid=r.roleid and r.roleid=#{roleid}
+    </select>  
+</mapper>  
