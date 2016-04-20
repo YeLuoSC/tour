@@ -18,6 +18,7 @@
    <http pattern="/scripts/**" security="none"></http>
    <http pattern="/system/resources/**" security="none"></http>
    <http pattern="/front/**" security="none"/>
+   <http pattern="/back/**" security="none"/>
    <http pattern="/common/user.do" security="none"/>
    <http auto-config="true" use-expressions="true">
      <form-login login-page="/common/user.do"  default-target-url="/system/sysManage.do"/>

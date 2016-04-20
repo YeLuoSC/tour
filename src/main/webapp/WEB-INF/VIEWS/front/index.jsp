@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home</title>
+<title>EASY PRIVATE TOUR</title>
 <%String path = request.getContextPath(); %>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,24 +15,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="<%=path %>/css/front/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
 <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-<script src="<%=path %>/scripts/jquery-1.11.0.min.js"></script>
+<script src="<%=path %>/scripts/jquery-1.11.1.min.js"></script>
 <!---- start-smoth-scrolling---->
-<script type="text/javascript" src="<%=path %>/scripts/front/move-top.js"></script>
-<script type="text/javascript" src="<%=path %>/scripts/front/easing.js"></script>
-<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
-<!--search-scripts-->
+<script type="text/javascript" src="<%=path %>/scripts/front/frame/move-top.js"></script>
+<script type="text/javascript" src="<%=path %>/scripts/front/frame/easing.js"></script>
 <!---pop-up-box---->
-<script src="<%=path %>/scripts/front/jquery.magnific-popup.js" type="text/javascript"></script>
-<script src="<%=path %>/scripts/front/owl.carousel.js"></script>
+<script src="<%=path %>/scripts/front/frame/jquery.magnific-popup.js" type="text/javascript"></script>
+<script src="<%=path %>/scripts/front/frame/owl.carousel.js"></script>
 <!---//pop-up-box---->
-<script src="<%=path %>/scripts/front/classie.js"></script>
-<script src="<%=path %>/scripts/front/uisearch.js"></script>
-<script src="<%=path %>/scripts/front/jquery.mixitup.min.js"></script>
+<script src="<%=path %>/scripts/front/frame/classie.js"></script>
+<script src="<%=path %>/scripts/front/frame/uisearch.js"></script>
+<script src="<%=path %>/scripts/front/frame/jquery.mixitup.min.js"></script>
+<script src="<%=path %>/scripts/front/frame/jquery.swipebox.min.js"></script> 
 <script>
 	new UISearch( document.getElementById( 'sb-search' ) );
 </script>
-<script src="<%=path %>/scripts/front/jquery.swipebox.min.js"></script> 
-<!--//search-scripts-->
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		
@@ -40,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 				});
 			});
-		</script>
+</script>
 <!--start-smoth-scrolling-->
 </head>
 <body>
@@ -53,12 +50,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="top-nav">
 				<span class="menu"><img src="<%=path %>/images/front/menu-icon.png" alt=""/></span>
 				<ul class="nav1">
-					<li><a href="index.html">HOME </a></li>
-					<li><a href="magazine.html">MAGAZINE</a></li>
-					<li><a href="strange-buildings.html">STRANGE BUILDINGS</a></li>
-					<li><a href="404.html">ARCHITECTURE</a></li>
-					<li><a href="blog.html">BLOG</a></li>
-					<li><a href="news.html">NEWS</a></li>
+					<li><a href="index.do">HOME </a></li>
+					<li><a href="tourinfo.do">BEIJING TOUR</a></li>
+					<li><a href="carRental.do">CAR RENTAL</a></li>
+					<li><a href="kungfu.do">KUNGFU SHOW</a></li>
+					<li><a href="acrobatic.do">ACROBATIC SHOW</a></li>
 				</ul>
 				<!-- script-for-menu -->
 				 <script>
@@ -72,8 +68,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="social-icons">
 				<ul>
-					<li><a href="#"><span class="twit"> </span></a></li>
-					<li><a href="#"><span class="fb"> </span></a></li>
+					<li><a href="#" title="follow me on twitter"><span class="twit"> </span></a></li>
+					<li><a href="#" title="follow me on facebook"><span class="fb"> </span></a></li>
 					<li><a href="#"><span class="g"> </span></a></li>
 				</ul>
 			</div>
@@ -91,12 +87,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header-info-right">
 				<div class="header cbp-spmenu-push">
 					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-							<a href="index.html">HOME</a>
-							<a href="magazine.html">MAGAZINE</a>
-							<a href="strange-buildings.html">STRANGE BUILDINGS</a>
-							<a href="404.html">ARCHITECTURE</a>
-							<a href="blog.html">BLOG</a>
-							<a href="news.html">NEWS</a>
+							<a href="index.do">HOME</a>
+							<a href="tourinfo.do">BEIJING TOUR</a>
+							<a href="carRental.do">CAR RENTAL</a>
+							<a href="kungfu.do">KUNGFU SHOW</a>
+							<a href="acrobatic.do">ACROBATIC SHOW</a>
 					</nav>
 					<!--script-nav -->	
 					<script>
@@ -127,11 +122,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											body = document.body;
 							
 										showLeftPush.onclick = function() {
-				classie.toggle( this, 'active' );
-				classie.toggle( body, 'cbp-spmenu-push-toright' );
-				classie.toggle( menuLeft, 'cbp-spmenu-open' );
-				disableOther( 'showLeftPush' );
-			};
+																				classie.toggle( this, 'active' );
+																				classie.toggle( body, 'cbp-spmenu-push-toright' );
+																				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+																				disableOther( 'showLeftPush' );
+																			};
 									</script>
 				</div>
 			</div>
@@ -427,7 +422,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				<div class="col-md-4 articles-left">
-					<h4>THIS WEEKS COLLECTION</h4>
+					<h4>MOST POPULAR VIEW SPOT IN BEIJING</h4>
 					<div class="week">
 						<div class="col-md-6 week-left">
 							<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
