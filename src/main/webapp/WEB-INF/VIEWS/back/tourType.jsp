@@ -7,16 +7,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lumino - Tables</title>
 
-<link href="<%=path %>/css/back/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path %>/css/back/bootstrap.css" rel="stylesheet">
 <link href="<%=path %>/css/back/datepicker3.css" rel="stylesheet">
 <%--<link href="<%=path %>/css/back/bootstrap-table.css" rel="stylesheet">--%>
 <link href="<%=path %>/css/back/styles.css" rel="stylesheet">
 <link href="<%=path %>/css/back/pagination.css" rel="stylesheet">
-<script src="<%=path %>/scripts/back/frame/jquery-1.11.1.min.js"></script>
+<script src="<%=path %>/scripts/jquery-1.11.1.min.js"></script>
 <script src="<%=path %>/scripts/back/frame/angular.min.js"></script>
 <script src="<%=path %>/scripts/back/frame/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=path %>/scripts/synch4j/js/json2.js"></script>  
-<script src="<%=path %>/scripts/synch4jnew/export.js"></script>
+<script src="<%=path %>/scripts/back/tourtype/tourType.js"></script>
 <script src="<%=path %>/scripts/back/frame/tm.pagination.js"></script>
 <script src="<%=path %>/scripts/back/frame/jquery.blockUI.min.js"></script>
 <%--<script src="<%=path %>/scripts/js/bootstrap-table.js"></script>--%>
@@ -78,7 +77,7 @@
 		</form>
 		<ul class="nav menu">
 			<li class="active"><a href="#"><span class="glyphicon glyphicon-list-alt"></span>旅游类型管理</a></li>
-			<li><a href="line.do"><span class="glyphicon glyphicon-info-sign"></span>旅游线路管理</a></li>
+			<li><a href="<%=path %>/back/line.do"><span class="glyphicon glyphicon-info-sign"></span>旅游线路管理</a></li>
 			<li><a href="#"><span class="glyphicon glyphicon-th"></span>标准模式导出</a></li>
 			<li><a href="import.do"><span class="glyphicon glyphicon-pencil"></span>数据导入</a></li>
 			<%--<li><a href="forms.html"><span class="glyphicon glyphicon-pencil"></span> Forms</a></li>--%>
@@ -115,14 +114,14 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">数据导出</li>
+				<li class="active">旅游类型管理</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">数据导出日志</h1>
-				<p>下表为之前的导出日志</p>
+				<h1 class="page-header">旅游类型管理</h1>
+				<p>设置旅游项目所属的类型</p>
 			</div>
 		</div><!--/.row-->
 				
@@ -131,7 +130,7 @@
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<button type="button" class="btn btn-success"  ng-click="export$()">导出</button>
+						<button type="button" class="btn btn-success"  ng-click="showAddWin()">新增</button>
 						<button type="button" class="btn btn-danger" ng-click="delBatch()">删除</button>
 					</div>
 					<div class="panel-body">
@@ -139,23 +138,19 @@
 						    <thead>
 						    <tr>
 						        <th><input type="checkbox"  ng-model="allchecked" ng-change="checkAll(allchecked)"/></th>
-						        <th>导出文件名称</th>
-						        <th>开始时间</th>
-						        <th>结束时间</th>
-						        <th>用时(s)</th>
+						        <th>序号</th>
+						        <th>旅游类型名称</th>
 						        <th>操作</th>
 						    </tr>
 						    </thead>
 						    <tbody>
 						    	<tr ng-repeat="x in data"  ng-hide="x.hidden==true">
 						    		<td><input type="checkbox"  ng-click="updateChecked(x)" ng-model="x.isSelected"/></td>
-						    		<td><span ng-if="!x.editable">{{x.fileName}}</span></td>
-						    		<td><span ng-if="!x.editable">{{x.startDate}}</span></td>
-						    		<td><span ng-if="!x.editable">{{x.endDate}}</span></td>
-						    		<td><span ng-if="!x.editable">{{x.usedDate}}s</span></td>
+						    		<td>{{$index+1}}</td>
+						    		<td><span ng-if="!x.editable">{{x.tourTypeName}}</span><span ng-if="x.editable"><input type="text" class="form-control" ng-model="x.tourTypeName" /></span></td>
 						    		<td>
-						    			<span class="btn btn-primary btn-xs" title="查看详细导出日志" ng-click="moreInfo(x)"><i class="glyphicon glyphicon-info-sign"></i></span>
-						    			<%--<span class="btn btn-primary btn-xs" title="下载导出包" ng-click="download(x)"><i class="glyphicon  glyphicon-download"></i></span>--%>
+						    			<span class="btn btn-primary btn-xs" title="编辑" ng-click="x.editable=true" ng-if="!x.editable"><i class="glyphicon glyphicon-pencil"></i></span>
+						    			<span class="btn btn-primary btn-xs" title="保存" ng-click="update(x)" ng-if="x.editable"><i class="glyphicon glyphicon-floppy-disk"></i></span>
 						    		</td>
 						    	</tr>
 						    </tbody>
@@ -168,7 +163,7 @@
 		<tm-pagination conf="paginationConf"></tm-pagination>
 	</div><!--/.main-->
 	<!-- 模态窗口 -->
-	<div class="modal fade"  id="moreInfoWin">
+	<div class="modal fade"  id="addWin">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -176,22 +171,15 @@
 	        <h4 class="modal-title" id="myModalLabel"></h4>
 	      </div>
 	      <div class="modal-body">
-	        	<table class="table table-striped table-hover">
-						    <thead>
-						    <tr>
-						        <th>物理表名称</th>
-						        <th>导出条数</th>
-						    </tr>
-						    </thead>
-						    <tbody>
-						    	<tr ng-repeat="x in detailList" >
-						    		<td><span>{{x.expPhysDBName}}</span></td>
-						    		<td><span>{{x.expDatas}}</span></td>
-						    	</tr>
-						    </tbody>
-						</table>
+	        	<form>
+					<div class="form-group">
+						<label>旅游类型名称：</label>
+						<input type="text" class="form-control" placeholder="请输入该旅游类型的名称" ng-model="po.tourTypeName"/>
+					</div>
+				</form>
 	      </div>
 	      <div class="modal-footer">
+	      		<button type="button" class="btn btn-primary" ng-click="add(po)">保存</button>
 	       		<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
 	      </div>
 	    </div>

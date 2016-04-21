@@ -2,7 +2,6 @@ package com.product.sys.security;
 
 import java.io.IOException;
 
-import javax.annotation.Resource;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
 import org.springframework.security.access.intercept.InterceptorStatusToken;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.stereotype.Component;
 /** 
  * @description 一个自定义的filter， 
  *  必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性， 
@@ -51,7 +50,8 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor imp
 	        //1.获取请求资源的权限    
 	            //执行Collection<ConfigAttribute> attributes = SecurityMetadataSource.getAttributes(object);    
 	        //2.是否拥有权限    
-	            //this.accessDecisionManager.decide(authenticated, object, attributes);    
+	            //this.accessDecisionManager.decide(authenticated, object, attributes);   
+	    	AuthenticationManager authenticationManager1 = getAuthenticationManager();
 	        System.out.println("------------MyFilterSecurityInterceptor.doFilter()-----------开始拦截器了....");  
 	        boolean isAjax = "XMLHttpRequest".equals(((HttpServletRequest) request).getHeader("X-Requested-With"));
 	        System.out.println("判断是否为ajax?"+isAjax);

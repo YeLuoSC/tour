@@ -7,12 +7,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lumino - Tables</title>
 
-<link href="<%=path %>/css/back/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path %>/css/back/bootstrap.css" rel="stylesheet">
 <link href="<%=path %>/css/back/datepicker3.css" rel="stylesheet">
 <%--<link href="<%=path %>/css/back/bootstrap-table.css" rel="stylesheet">--%>
 <link href="<%=path %>/css/back/styles.css" rel="stylesheet">
 <link href="<%=path %>/css/back/pagination.css" rel="stylesheet">
-<script src="<%=path %>/scripts/back/frame/jquery-1.11.1.min.js"></script>
+<script src="<%=path %>/scripts/jquery-1.11.1.min.js"></script>
+<script src="<%=path %>/scripts/plugin/ckeditor/ckeditor.js"></script>
 <script src="<%=path %>/scripts/back/frame/angular.min.js"></script>
 <script src="<%=path %>/scripts/back/frame/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=path %>/scripts/synch4j/js/json2.js"></script>  
@@ -76,7 +77,7 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li><a href="tourType.do"><span class="glyphicon glyphicon-list-alt"></span>旅游类型管理</a></li>
+			<li><a href="<%=path %>/back/tourType.do"><span class="glyphicon glyphicon-list-alt"></span>旅游类型管理</a></li>
 			<li class="active"><a href="#"><span class="glyphicon glyphicon-info-sign"></span>旅游线路管理</a></li>
 			<li><a href="export.do"><span class="glyphicon glyphicon-th"></span>标准模式导出</a></li>
 			<li><a href="import.do"><span class="glyphicon glyphicon-pencil"></span>数据导入</a></li>
@@ -174,7 +175,7 @@
 
 		<!-- Pagination -->
 		<tm-pagination conf="paginationConf"></tm-pagination>
-
+		<textarea id="TextArea1" cols="20" rows="2" class="ckeditor"></textarea>
 	</div><!--/.main-->
 	<!-- 模态窗口 -->
 	<div class="modal fade"  id="addWin" ng-controller="addCtrl">

@@ -74,7 +74,6 @@ public class MySecurityMetadataSource implements FilterInvocationSecurityMetadat
                 }  
             }  
         }
-        System.out.println("11");
         Set<String> set = resourceMap.keySet();
         Iterator<String> it = set.iterator();
         while(it.hasNext()){

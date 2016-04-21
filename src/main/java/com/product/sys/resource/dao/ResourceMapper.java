@@ -10,6 +10,6 @@ import com.product.sys.role.po.RolePO;
 
 public interface ResourceMapper extends SuperMapper<ResourcePO>{
 	
-	public List<ResourcePO> getResourceByRoleID(@Param("roleID")String roleID);
+	public List<ResourcePO> getResourceByRoleID(@Param("roleId")String roleId);
 
 }

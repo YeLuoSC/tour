@@ -21,7 +21,7 @@
        select res.*,r.* from COM_RESOURCE res,COM_ROLERESOURCE rr,COM_ROLE r where res.resourceid=rr.resourceid and rr.roleid=r.roleid and r.roleid=#{roleid}
     </select>   -->
     <select id="getRoleByUserName" parameterType="string" resultType="com.product.sys.role.po.RolePO">  
-       select r.* from COM_USERINFO u,COM_USERROLE ur,COM_ROLE r where u.uid=ur.uid and ur.rid=r.rid and u.username=#{userName}
+       select r.* from COM_USERINFO u,COM_USERROLE ur,COM_ROLE r where u.userid=ur.userid and ur.roleid=r.roleid and u.username=#{userName}
     </select>  
 
        

@@ -23,7 +23,6 @@ import com.product.sys.user.dao.UserMapper;
 import com.product.sys.user.po.UserPO;
 
 
-@Component
 public class MyUserDetailsServiceImpl implements UserDetailsService{
 
 	@Resource

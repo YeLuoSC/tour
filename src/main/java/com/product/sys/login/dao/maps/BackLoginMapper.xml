@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+   
+<mapper namespace="com.product.sys.login.dao.BackLoginMapper">  
+	
+    <select id="getUserPO"  resultType="com.product.sys.user.po.UserPO">  
+       select * from COM_USERINFO  where username=#{userName} and password=#{password}
+    </select>  
+
+       
+</mapper>  
