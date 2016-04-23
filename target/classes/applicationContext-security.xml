@@ -21,9 +21,9 @@
    <http pattern="/system/resources/**" security="none"></http>
    <http pattern="/front/**" security="none"/>
    <http pattern="/common/picUpload.do" security="none"/>
-  <http pattern="/common/login.do" security="none"/>
+  <http pattern="/back/login.do" security="none"/>
    <http auto-config="true" use-expressions="true">
-     <form-login login-page="/common/login.do"  default-target-url="/back/tourType.do"/>
+     <form-login login-page="/back/login.do"  default-target-url="/back/index.do"/>
      <custom-filter ref="myFilterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
    </http>
    <!-- 认证管理器，实现用户认证的入口，主要实现UserDetailsService接口即可 -->

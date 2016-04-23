@@ -28,7 +28,7 @@ public class LineController {
 	
 	@RequestMapping("")
 	public String page(){
-		return ROOT_PATH + "line";
+		return ROOT_PATH + "line2";
 	}
 	
 	@RequestMapping("/getTourLine")

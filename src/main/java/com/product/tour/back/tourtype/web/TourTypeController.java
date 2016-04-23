@@ -24,7 +24,7 @@ public class TourTypeController {
 	
 	@RequestMapping("")
 	public String page(){
-		return ROOT_PATH + "tourType";
+		return ROOT_PATH + "tourType2";
 	}
 	
 	@RequestMapping("/getTourType")

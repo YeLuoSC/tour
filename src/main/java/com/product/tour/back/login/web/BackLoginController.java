@@ -1,4 +1,4 @@
-package com.product.sys.login.web;
+package com.product.tour.back.login.web;
 
 import javax.annotation.Resource;
 
@@ -15,27 +15,19 @@ import com.product.sys.user.po.UserPO;
  * @author xie
  * @date 2016-4-22 ÏÂÎç8:14:53
  */
-
+@Controller
+@RequestMapping("/back")
 public class BackLoginController {
 	
 	private static final String ROOT_PATH = "/back/";
 	
-	@Resource
-	private IBackLoginService backLoginServiceImpl;
-	
-	@RequestMapping("")
+	@RequestMapping("/login")
 	public String loginPage(){
 		return ROOT_PATH+"/login";
 	}
 	
-	@RequestMapping("auth")
-	public String authUserInfo(String userName,String password){
-		UserPO userPO = backLoginServiceImpl.getUserPO(userName, password);
-		if(userPO != null){
-			return ROOT_PATH+"tourType";
-		}else{
-			return null;
-		}
-		
+	@RequestMapping("/index")
+	public String index(){
+		return ROOT_PATH+"/index";
 	}
 }
