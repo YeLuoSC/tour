@@ -6,7 +6,13 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
-
+/**
+ * 
+ * <p>Title: PropertiesUtil</p>
+ * <p>Description: 该工具类负责使用项目中的配置文件，读取配置文件的一些属性</p>
+ * @author xie
+ * @date 2016-4-22 下午8:14:12
+ */
 public class PropertiesUtil {
 	
 	private static Logger logger = Logger.getLogger(PropertiesUtil.class);

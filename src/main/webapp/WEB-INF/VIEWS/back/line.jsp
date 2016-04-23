@@ -5,20 +5,21 @@
 <%String path = request.getContextPath(); %>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lumino - Tables</title>
+<title>旅游线路管理</title>
 
 <link href="<%=path %>/css/back/bootstrap.css" rel="stylesheet">
 <link href="<%=path %>/css/back/datepicker3.css" rel="stylesheet">
 <%--<link href="<%=path %>/css/back/bootstrap-table.css" rel="stylesheet">--%>
 <link href="<%=path %>/css/back/styles.css" rel="stylesheet">
 <link href="<%=path %>/css/back/pagination.css" rel="stylesheet">
+<link href="<%=path %>/scripts/plugin/DateTimePicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <script src="<%=path %>/scripts/jquery-1.11.1.min.js"></script>
 <script src="<%=path %>/scripts/plugin/ckeditor/ckeditor.js"></script>
 <script src="<%=path %>/scripts/back/frame/angular.min.js"></script>
 <script src="<%=path %>/scripts/back/frame/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=path %>/scripts/synch4j/js/json2.js"></script>  
-<script src="<%=path %>/scripts/synch4jnew/procedure.js"></script>
+<script src="<%=path %>/scripts/back/line/line.js"></script>
 <script src="<%=path %>/scripts/back/frame/tm.pagination.js"></script>
+<script src="<%=path %>/scripts/plugin/DateTimePicker/bootstrap-datetimepicker.min.js"></script>
 <%--<script src="<%=path %>/scripts/back/frame/bootstrap-table.js"></script>--%>
 <script>
 	!function ($) {
@@ -110,18 +111,18 @@
 		<div class="attribution">Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a></div>
 	</div><!--/.sidebar-->
 		
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main"   ng-controller="tableCtrl" >			
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">远程脚本执行设置</li>
+				<li class="active">旅游线路管理</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">远程脚本执行设置</h1>
-				<p>设置完成后，可在对方数据库中执行该数据库脚本代码</p>
+				<h1 class="page-header">旅游线路管理</h1>
+				<p>设置旅游线路，可在前台显示出这些信息</p>
 			</div>
 		</div><!--/.row-->
 				
@@ -130,39 +131,36 @@
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<button type="button" class="btn btn-primary" ng-click="addProcedure()"  data-toggle="modal" data-target="#addWin">新增</button>
-						<button type="button" class="btn btn-danger" ng-click="delBatchProcedure()">删除</button>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addWin">新增</button>
+						<button type="button" class="btn btn-danger" ng-click="delBatch()">删除</button>
 					</div>
 					<div class="panel-body">
 						<table class="table table-striped table-hover">
 						    <thead>
 						    <tr>
 						        <th><input type="checkbox"  ng-model="allchecked" ng-change="checkAll(allchecked)"/></th>
-						        <th>名称</th>
-						        <th>作用描述</th>
-						        <th>是否启用</th>
-						        <th>执行代码</th>
+						        <th>序号</th>
+						        <th>路线名称</th>
+						        <th>所属旅游类型</th>
+						        <th>价格($)</th>
+						        <th>出发日期</th>
+						        <th>排序号</th>
+						        <th>前台是否可见</th>
 						        <th>操作</th>
 						    </tr>
 						    </thead>
 						    <tbody>
 						    	<tr ng-repeat="x in data"  ng-hide="x.hidden==true">
 						    		<td><input type="checkbox"  ng-click="updateChecked(x)" ng-model="x.isSelected"/></td>
-						    		<td><span ng-if="!x.editable">{{x.name}}</span><input type="text" class="form-control" ng-if="x.editable" ng-model="x.name"/></td>
-						    		<td><span ng-if="!x.editable">{{x.describe}}</span><input type="text" class="form-control" ng-if="x.editable" ng-model="x.describe"/></td>
-									<td>
-										<span ng-if="!x.editable"><span ng-if="x.available==0">停用</span><span ng-if="x.available==1">启用</span></span>
-										<span ng-if="x.editable">
-											<%--<select class="form-control" ng-model="x.tableType">
-												<option ng-repeat="tableType in tableTypes" value="{{tableType.value}}">{{tableType.name}}</option>
-											</select>
-										--%>
-											<select class="form-control" ng-model="x.available" ng-options="available.value as available.name for available in availableList"></select>
-										</span>
-										<td><span ng-if="!x.editable">{{x.programCode}}</span><input type="text" class="form-control" ng-if="x.editable" ng-model="x.programCode"/></td>
+						    		<td>{{$index+1}}</td>
+						    		<td>{{x.tourLineName}}</td>
+						    		<td>{{x.tourTypePO.tourTypeName}}</td>
+									<td>{{x.price}}</td>
+									<td>{{x.startDate}}</td>
+									<td>{{x.orderId}}</td>
+									<td><span ng-if="x.visiable=='1'">可见</span><span ng-if="x.visiable=='0'">不可见</span></td>
 						    		<td>
 						    			<span class="btn btn-primary btn-xs" title="编辑" ng-click="x.editable=true" ng-if="!x.editable"><i class="glyphicon glyphicon-pencil"></i></span>
-						    			<span class="btn btn-primary btn-xs" title="保存" ng-click="save(x)" ng-if="x.editable"><i class="glyphicon glyphicon-floppy-disk"></i></span>
 						    			<span class="btn btn-primary btn-xs" title="删除" ng-click="del(x,$index)"><i class="glyphicon glyphicon-remove"></i></span>
 						    		</td>
 						    	</tr>
@@ -175,38 +173,62 @@
 
 		<!-- Pagination -->
 		<tm-pagination conf="paginationConf"></tm-pagination>
-		<textarea id="TextArea1" cols="20" rows="2" class="ckeditor"></textarea>
+		
 	</div><!--/.main-->
 	<!-- 模态窗口 -->
-	<div class="modal fade"  id="addWin" ng-controller="addCtrl">
-	  <div class="modal-dialog" role="document">
+	<div class="modal fade"  id="addWin">
+	  <div class="modal-dialog" role="document" style="width:800px;">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">新增脚本代码</h4>
+	        <h4 class="modal-title" id="myModalLabel">新增旅游线路</h4>
 	      </div>
 	      <div class="modal-body">
 	        	<form>
 							<div class="form-group">
-								<label>名称：</label>
-								<input type="text" class="form-control" placeholder="请输入该存储过程的名称" ng-model="proPO.name"/>
+								<label>路线名称：</label>
+								<input type="text" class="form-control" placeholder="请输入该路线的名称" ng-model="po.tourLineName"/>
 							</div>
 							<div class="form-group">
-								<label>作用描述：</label>
-								<input type="text" class="form-control" placeholder="请输入该存储过程的作用描述" ng-model="proPO.describe"/>
+								<label>所属旅游类型：</label>
+								<select class="form-control"  placeholder="请选择"  ng-model="po.tourTypeId" ng-options="tourTypePO.tourTypeId as tourTypePO.tourTypeName for tourTypePO in tourTypeList"></select>
 							</div>
 							<div class="form-group">
-								<label>是否启用：</label>
-								<select class="form-control" ng-model="proPO.available" ng-options="available.value as available.name for available in availableList"></select>
+								<label>价格：</label>
+								<input type="text" class="form-control" placeholder="请输入该路线的价格" ng-model="po.price"/>
 							</div>
 							<div class="form-group">
-								<label>执行代码：</label>
-								<textarea class="form-control" placeholder="请录入该存储过程的代码" rows="10" ng-model="proPO.programCode"/></textarea>
+								<label>出发日期：</label>
+								<input type="text" class="form_datetime form-control" ng-model="po.startDate"/>
+								<script type="text/javascript">
+									$(".form_datetime").datetimepicker({format: 'yyyy-mm-dd',todayBtn:true,autoclose:true,minView:2});
+								</script>
+							</div>
+							<div class="form-group">
+								<label>前台是否可见：</label>
+								<label class="radio-inline">
+									<input type="radio"  name="visiable" ng-model="po.visiable" ng-value="1"/>可见
+								</label>
+								<label class="radio-inline">
+									<input type="radio"  name="visiable" ng-model="po.visiable" ng-value="0"/>不可见
+								</label>
+							</div>
+							<div class="form-group">
+								<label>排序号</label>
+								<input type="number" class="form-control" ng-model="po.orderId"/>
+							</div>
+							<div class="form-group">
+								<label>路线简介（限200字）：剩余{{200 - po.summary.length}}字</label>
+								<textarea rows="4" cols="20" class="form-control" placeholder="请输入该线路简介的名称" ng-model="po.summary"></textarea>
+							</div>
+							<div class="form-group">
+								<label>线路介绍：</label>
+								<textarea ckeditor cols="20" rows="10"  ng-model="po.info"></textarea>
 							</div>
 				</form>
 	      </div>
 	      <div class="modal-footer">
-	    	  	<button type="button" class="btn btn-primary" ng-click="addProcedure(proPO)">保存</button>
+	    	  	<button type="button" class="btn btn-primary" ng-click="add(po)">保存</button>
 	       		<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
 	      </div>
 	    </div>

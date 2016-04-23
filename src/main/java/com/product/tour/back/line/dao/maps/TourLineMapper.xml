@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+   
+<mapper namespace="com.product.tour.back.line.dao.TourLineMapper">  
+	
+ 	<resultMap type="com.product.tour.back.line.po.TourLinePO" id="tourLinePO">
+ 		<id column="tourlineid" property="tourlineid"/>
+ 		<result column="tourLineName" property="tourLineName"/>
+ 		<result column="status" property="status"/>
+ 		<result column="price" property="price"/>
+ 		<result column="startDate" property="startDate" jdbcType="DATE" javaType="java.util.Date"/>
+ 		<result column="summary" property="summary"/>
+ 		<result column="info" property="info"/>
+ 		<result column="orderid" property="orderId"/>
+ 		<result column="visiable" property="visiable"/>
+ 		<association property="tourTypePO" javaType="com.product.tour.back.tourtype.po.TourTypePO">
+ 			<id column="tourtypeid" property="tourtypeid"/>
+ 			<result column="status" property="status"/>
+ 			<result column="tourTypeName" property="tourTypeName"/>
+ 		</association>
+ 	</resultMap>
+    <select id="deleteTourLine">  
+       update tou_t_tourline set status='2' where id in <foreach collection="idList" item="id" separator="," open="(" close=")">#{id}</foreach>
+    </select>  
+
+    <select id="getTourLine" resultMap="tourLinePO">
+    	select t1.tourlineid,t1.tourlinename,t1.status,t1.price,date_format(t1.startdate,'%Y-%m-%d') startdate,t1.summary,t2.tourTypeName,t1.visiable,t1.orderid from tou_t_tourline t1,tou_t_tourtype t2 where t1.tourtypeid=t2.tourtypeid
+    </select>
+</mapper>  

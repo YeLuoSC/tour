@@ -12,20 +12,20 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 public class TourTypePO {
 	@Id
 	@GeneratedValue(generator = "JDBC")
-	private Integer id;
+	private Integer tourtypeid;
 	
-	@Column(name="tourType_Name")
+	@Column(name="tourTypeName")
 	private String tourTypeName;
 	
 	@Column(name="status")
 	private String status;
 
-	public Integer getId() {
-		return id;
+	public Integer getTourTypeId() {
+		return tourtypeid;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setTourTypeId(Integer tourTypeId) {
+		this.tourtypeid = tourTypeId;
 	}
 
 	public String getTourTypeName() {
