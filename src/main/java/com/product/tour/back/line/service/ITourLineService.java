@@ -15,5 +15,7 @@ public interface ITourLineService {
 	public TourLinePO updateTourLine_tx(TourLinePO tourLinePO);
 
 	public TourLinePO addTourLine_tx(TourLinePO tourLinePO);
+	
+	public TourLinePO getTourLinePOByTourLineId(Integer tourLineId);
 
 }

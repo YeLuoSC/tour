@@ -40,13 +40,19 @@ app.controller('lineController',function($scope,$http,lineService){
 		lineService.delBatch($scope.data);
 	};
 	
-	$scope.showAddWin = function(){
-		$("#addWin").modal('show');
-	};
-	
 	$scope.add = function(po){
 		lineService.add(po);
 		$("#addWin").modal('hide');
+	}
+	
+	$scope.showAddWin = function(po){
+		$scope.po = {};
+		$("#addWin").modal('show');
+	}
+	
+	$scope.showUpdateWin = function(po){
+		$("#updateWin").modal('show');
+		lineService.getTourLineInfo(po,$scope);
 	}
 });
 
@@ -73,11 +79,16 @@ app.service('lineService',function($http){
 		});
 	};
 	
+	this.getTourLineInfo = function(po,scope){
+		$http.post("line/getTourLineInfo.do",po.tourlineid).success(function(response){
+			scope.po = response;
+		});
+	};
 	this.update = function(po){
 		$http.post("line/updateTourLine.do",po).success(function(response){
 			if(response != null){
-				po.editable = false;
 				alert("更新成功!");
+				location.reload();
 			}else{
 				alert("更新失败，请重试！");
 			}
@@ -89,7 +100,7 @@ app.service('lineService',function($http){
 		angular.forEach(arr, function(po,index,array){
 			 //data等价于array[index]
 			if(po.isSelected == true){
-				idArr.push(po.id);
+				idArr.push(po.tourlineid);
 			}
 		});
 		if(idArr.length > 0){
@@ -101,6 +112,7 @@ app.service('lineService',function($http){
 						}
 					});
 					alert("删除成功"+response.success+"条记录！");
+					location.reload();
 				}
 			});
 		}

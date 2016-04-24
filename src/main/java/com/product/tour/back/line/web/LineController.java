@@ -38,6 +38,18 @@ public class LineController {
 		return page;
 	}
 	
+	/**
+	 * 
+	 * @param page
+	 * @return
+	 * 获取单条旅游路线信息
+	 */
+	@RequestMapping("/getTourLineInfo")
+	@ResponseBody
+	public Object getTourLineInfo(@RequestBody Integer tourlineid){
+		return tourLineServiceImpl.getTourLinePOByTourLineId(tourlineid);
+	}
+	
 	@RequestMapping("/delTourLine")
 	@ResponseBody
 	public Object delTourLine(@RequestBody List<String> idList){

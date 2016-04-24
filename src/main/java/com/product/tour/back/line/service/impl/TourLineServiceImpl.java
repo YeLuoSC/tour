@@ -52,4 +52,10 @@ public class TourLineServiceImpl implements ITourLineService{
 		return tourLinePO;
 	}
 
+	@Override
+	public TourLinePO getTourLinePOByTourLineId(Integer tourLineId) {
+		
+		return tourLineMapper.getTourLineByTourLineId(tourLineId);
+	}
+
 }

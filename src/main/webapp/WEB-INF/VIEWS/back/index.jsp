@@ -39,6 +39,15 @@
 	  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 	})
 	
+	$(function(){
+		$(".nav.menu").children().on('click',function(e){
+			var $this = $(this);
+			$.each($this.siblings(),function(index,ele){
+				$(ele).removeClass('active');
+			});
+			$this.addClass('active');
+		});
+	});
 	
 </script>
 <!--[if lt IE 9]>
@@ -83,9 +92,9 @@
 		<ul class="nav menu">
 			<li><a href="#tourType"><span class="glyphicon glyphicon-list-alt"></span>旅游类型管理</a></li>
 			<li><a href="#line"><span class="glyphicon glyphicon-info-sign"></span>旅游线路管理</a></li>
-			<li><a href="export.do"><span class="glyphicon glyphicon-th"></span>标准模式导出</a></li>
+			<li><a href="export.do"><span class="glyphicon glyphicon-th"></span>景点管理</a></li>
 			<li><a href="import.do"><span class="glyphicon glyphicon-pencil"></span>数据导入</a></li>
-			<li><a href="https://github.com/YeLuoSC/synch4j"><span class="glyphicon glyphicon-info-sign"></span>关于作者</a></li>
+			<li><a href="https://github.com/YeLuoSC/"><span class="glyphicon glyphicon-info-sign"></span>关于作者</a></li>
 			<%--<li class="parent ">
 				<a href="#">
 					<span class="glyphicon glyphicon-list"></span> Dropdown <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
