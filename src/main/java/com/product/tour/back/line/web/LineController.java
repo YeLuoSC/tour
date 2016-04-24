@@ -18,7 +18,7 @@ import com.product.tour.back.tourtype.external.ITourTypeExternalService;
 @RequestMapping( value = "/back/line")
 public class LineController {
 
-	private static final String ROOT_PATH = "/back/";
+	private static final String ROOT_PATH = "/back/line/";
 	
 	@Resource
 	private ITourLineService tourLineServiceImpl;
@@ -28,7 +28,7 @@ public class LineController {
 	
 	@RequestMapping("")
 	public String page(){
-		return ROOT_PATH + "line2";
+		return ROOT_PATH + "line";
 	}
 	
 	@RequestMapping("/getTourLine")

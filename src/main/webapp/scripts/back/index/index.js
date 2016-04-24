@@ -11,6 +11,9 @@ app.config(function($routeProvider){
 	}).when('/line',{
 		templateUrl:'line.do',
 		controller:'lineController'
+	}).when('/attraction',{
+		templateUrl:'attraction.do',
+		controller:'attractionController'
 	});
 });
 

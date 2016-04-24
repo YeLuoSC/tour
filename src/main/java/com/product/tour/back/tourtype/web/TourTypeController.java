@@ -17,14 +17,14 @@ import com.product.tour.back.tourtype.service.ITourTypeService;
 @RequestMapping( value = "/back/tourType")
 public class TourTypeController {
 
-	private static final String ROOT_PATH = "/back/";
+	private static final String ROOT_PATH = "/back/tourtype/";
 	
 	@Resource
 	private ITourTypeService tourTypeServiceImpl;
 	
 	@RequestMapping("")
 	public String page(){
-		return ROOT_PATH + "tourType2";
+		return ROOT_PATH + "tourType";
 	}
 	
 	@RequestMapping("/getTourType")

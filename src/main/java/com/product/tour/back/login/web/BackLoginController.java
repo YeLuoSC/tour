@@ -19,11 +19,11 @@ import com.product.sys.user.po.UserPO;
 @RequestMapping("/back")
 public class BackLoginController {
 	
-	private static final String ROOT_PATH = "/back/";
+	private static final String ROOT_PATH = "/back/index/";
 	
 	@RequestMapping("/login")
 	public String loginPage(){
-		return ROOT_PATH+"/login";
+		return ROOT_PATH+"login";
 	}
 	
 	@RequestMapping("/index")
