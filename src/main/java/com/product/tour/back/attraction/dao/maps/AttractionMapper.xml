@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+   
+<mapper namespace="com.product.tour.back.attraction.dao.AttractionMapper">  
+	
+ 	<resultMap type="com.product.tour.back.attraction.po.AttractionPO" id="attractionPO">
+ 		<id column="attractionId" property="attractionId"/>
+ 		<result column="attractionName" property="attractionName"/>
+ 		<result column="status" property="status"/>
+ 		<result column="summary" property="summary"/>
+ 		<result column="info" property="info"/>
+ 		<result column="orderid" property="orderId"/>
+ 		<result column="visiable" property="visiable"/>
+ 		<result column="cityid" property="cityId"/>
+ 		<association property="cityPO" javaType="com.product.tour.back.city.po.CityPO">
+ 			<id column="cityid" property="cityId"/>
+ 			<result column="status" property="status"/>
+ 			<result column="cityName" property="cityName"/>
+ 		</association>
+ 	</resultMap>
+    <select id="deleteAttraction">  
+       update tou_t_attraction set status='2' where attractionid in <foreach collection="idList" item="id" separator="," open="(" close=")">#{id}</foreach>
+    </select>  
+
+    <select id="getAttraction" resultMap="attractionPO">
+    	select t1.*,t2.* from tou_t_attraction t1,tou_t_city t2 where t1.cityid=t2.cityid
+    </select>
+    
+    <select id="getAttractionByAttractionId" resultMap="attractionPO">
+    	select t1.*,t2.* from tou_t_attraction t1,tou_t_city t2 where t1.cityid=t2.cityid and t1.attractionid=#{attractionId}
+    </select>
+    
+</mapper>  

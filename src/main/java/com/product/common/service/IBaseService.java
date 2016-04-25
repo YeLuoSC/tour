@@ -1,5 +1,7 @@
 package com.product.common.service;
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -39,4 +41,18 @@ public interface IBaseService<T> {
 	 * @return
 	 */
 	public Object del_tx(T t);
+	
+	/**
+	 * 通过主键id查询实体类，多用于更新时获取实体类信息
+	 * @param id
+	 * @return
+	 */
+	public T getPOByPrimaryKey(Integer id);
+	
+	/**
+	 * 通过主键集合删除对应的数据行
+	 * @param idList
+	 * @return
+	 */
+	public Object delByPrimaryKeyList_tx(List<String> idList);
 }

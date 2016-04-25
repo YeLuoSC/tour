@@ -29,9 +29,7 @@
 						        <th><input type="checkbox"  ng-model="allchecked" ng-change="checkAll(allchecked)"/></th>
 						        <th>序号</th>
 						        <th>景点名称</th>
-						        <th>所属旅游类型</th>
-						        <th>价格($)</th>
-						        <th>出发日期</th>
+						        <th>所属城市</th>
 						        <th>排序号</th>
 						        <th>前台是否可见</th>
 						        <th>操作</th>
@@ -41,10 +39,8 @@
 						    	<tr ng-repeat="x in data"  ng-hide="x.hidden==true">
 						    		<td><input type="checkbox"  ng-click="updateChecked(x)" ng-model="x.isSelected"/></td>
 						    		<td>{{$index+1}}</td>
-						    		<td>{{x.tourLineName}}</td>
-						    		<td>{{x.tourTypePO.tourTypeName}}</td>
-									<td>{{x.price}}</td>
-									<td>{{x.startDate}}</td>
+						    		<td>{{x.attractionName}}</td>
+						    		<td>{{x.cityPO.cityName}}</td>
 									<td>{{x.orderId}}</td>
 									<td><span ng-if="x.visiable=='1'">可见</span><span ng-if="x.visiable=='0'">不可见</span></td>
 						    		<td>
@@ -68,28 +64,17 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">新增旅游线路</h4>
+	        <h4 class="modal-title" id="myModalLabel">新增景点信息</h4>
 	      </div>
 	      <div class="modal-body">
 	        	<form>
 							<div class="form-group">
-								<label>路线名称：</label>
-								<input type="text" class="form-control" placeholder="请输入该路线的名称" ng-model="po.tourLineName"/>
+								<label>景点名称：</label>
+								<input type="text" class="form-control" placeholder="请输入该景点的名称" ng-model="po.attractionName"/>
 							</div>
 							<div class="form-group">
-								<label>所属旅游类型：</label>
-								<select class="form-control"  placeholder="请选择"  ng-model="po.tourTypeId" ng-options="tourTypePO.tourTypeId as tourTypePO.tourTypeName for tourTypePO in tourTypeList"></select>
-							</div>
-							<div class="form-group">
-								<label>价格：</label>
-								<input type="text" class="form-control" placeholder="请输入该路线的价格" ng-model="po.price"/>
-							</div>
-							<div class="form-group">
-								<label>出发日期：</label>
-								<input type="text" class="form_datetime form-control" ng-model="po.startDate" placeholder="请输入出发日期"/>
-								<script type="text/javascript">
-									$(".form_datetime").datetimepicker({format: 'yyyy-mm-dd',todayBtn:true,autoclose:true,minView:2});
-								</script>
+								<label>所属城市：</label>
+								<select class="form-control"  placeholder="请选择"  ng-model="po.cityId" ng-options="cityPO.cityId as cityPO.cityName for cityPO in cityList"></select>
 							</div>
 							<div class="form-group">
 								<label>前台是否可见：</label>
@@ -105,11 +90,11 @@
 								<input type="number" class="form-control" ng-model="po.orderId" placeholder="请输入展示时的顺序序号"/>
 							</div>
 							<div class="form-group">
-								<label>路线简介（限200字）：剩余{{200 - po.summary.length}}字</label>
-								<textarea rows="4" cols="20" class="form-control" placeholder="请输入该线路简介的名称" ng-model="po.summary"></textarea>
+								<label>景点简介（限200字）：剩余{{200 - po.summary.length}}字</label>
+								<textarea rows="4" cols="20" class="form-control" placeholder="请输入该景点简介的名称" ng-model="po.summary"></textarea>
 							</div>
 							<div class="form-group">
-								<label>线路介绍：</label>
+								<label>景点介绍：</label>
 								<textarea ckeditor cols="20" rows="10"  ng-model="po.info"></textarea>
 							</div>
 				</form>
@@ -132,23 +117,12 @@
 	      <div class="modal-body">
 	        	<form>
 							<div class="form-group">
-								<label>路线名称：</label>
-								<input type="text" class="form-control" placeholder="请输入该路线的名称" ng-model="po.tourLineName"/>
+								<label>景点名称：</label>
+								<input type="text" class="form-control" placeholder="请输入该景点的名称" ng-model="po.attractionName"/>
 							</div>
 							<div class="form-group">
-								<label>所属旅游类型：</label>
-								<select class="form-control"  placeholder="请选择"  ng-model="po.tourTypeId" ng-options="tourTypePO.tourTypeId as tourTypePO.tourTypeName for tourTypePO in tourTypeList"></select>
-							</div>
-							<div class="form-group">
-								<label>价格：</label>
-								<input type="text" class="form-control" placeholder="请输入该路线的价格" ng-model="po.price"/>
-							</div>
-							<div class="form-group">
-								<label>出发日期：</label>
-								<input type="text" class="form_datetime form-control" ng-model="po.startDate"/>
-								<script type="text/javascript">
-									$(".form_datetime").datetimepicker({format: 'yyyy-mm-dd',todayBtn:true,autoclose:true,minView:2});
-								</script>
+								<label>所属城市：</label>
+								<select class="form-control"  placeholder="请选择"  ng-model="po.cityId" ng-options="cityPO.cityId as cityPO.cityName for cityPO in cityList"></select>
 							</div>
 							<div class="form-group">
 								<label>前台是否可见：</label>
@@ -161,14 +135,14 @@
 							</div>
 							<div class="form-group">
 								<label>排序号</label>
-								<input type="number" class="form-control" ng-model="po.orderId"/>
+								<input type="number" class="form-control" ng-model="po.orderId" placeholder="请输入展示时的顺序序号"/>
 							</div>
 							<div class="form-group">
-								<label>路线简介（限200字）：剩余{{200 - po.summary.length}}字</label>
-								<textarea rows="4" cols="20" class="form-control" placeholder="请输入该线路简介的名称" ng-model="po.summary"></textarea>
+								<label>景点简介（限200字）：剩余{{200 - po.summary.length}}字</label>
+								<textarea rows="4" cols="20" class="form-control" placeholder="请输入该景点简介的名称" ng-model="po.summary"></textarea>
 							</div>
 							<div class="form-group">
-								<label>线路介绍：</label>
+								<label>景点介绍：</label>
 								<textarea ckeditor cols="20" rows="10"  ng-model="po.info"></textarea>
 							</div>
 				</form>

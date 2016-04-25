@@ -1,6 +1,6 @@
 app.controller('attractionController',function($scope,$http,attractionService){
-	$http.post("line/getTourTypeList.do").success(function(response){
-		$scope.tourTypeList = response;
+	$http.post("attraction/getCityList.do").success(function(response){
+		$scope.cityList = response;
 	});
 	//配置分页基本参数
 	$scope.paginationConf = {
@@ -52,7 +52,7 @@ app.controller('attractionController',function($scope,$http,attractionService){
 	
 	$scope.showUpdateWin = function(po){
 		$("#updateWin").modal('show');
-		attractionService.getTourLineInfo(po,$scope);
+		attractionService.getAttractionInfo(po,$scope);
 	}
 });
 
@@ -60,7 +60,7 @@ app.service('attractionService',function($http){
 	var proData = {};
 	var me = this;
 	this.getData = function(scope){
-		$http.post("line/getTourLine.do",scope.paginationConf.page).success(function(response){
+		$http.post("attraction/getAttraction.do",scope.paginationConf.page).success(function(response){
 			scope.paginationConf.page.total = response.total;
 			scope.data = response.list;
 			proData = scope.data;
@@ -69,7 +69,7 @@ app.service('attractionService',function($http){
 	
 	this.add = function(po){
 		po.status='1';
-		$http.post("line/addTourLine.do",po).success(function(response){
+		$http.post("attraction/addAttraction.do",po).success(function(response){
 			if(response != null){
 				alert("创建成功!");
 				location.reload();
@@ -79,13 +79,13 @@ app.service('attractionService',function($http){
 		});
 	};
 	
-	this.getTourLineInfo = function(po,scope){
-		$http.post("line/getTourLineInfo.do",po.tourlineid).success(function(response){
+	this.getAttractionInfo = function(po,scope){
+		$http.post("attraction/getAttractionInfo.do",po.attractionId).success(function(response){
 			scope.po = response;
 		});
 	};
 	this.update = function(po){
-		$http.post("line/updateTourLine.do",po).success(function(response){
+		$http.post("attraction/updateAttraction.do",po).success(function(response){
 			if(response != null){
 				alert("更新成功!");
 				location.reload();
@@ -100,11 +100,11 @@ app.service('attractionService',function($http){
 		angular.forEach(arr, function(po,index,array){
 			 //data等价于array[index]
 			if(po.isSelected == true){
-				idArr.push(po.tourlineid);
+				idArr.push(po.attractionId);
 			}
 		});
 		if(idArr.length > 0){
-			$http.post("line/delTourLine.do",idArr).success(function(response){
+			$http.post("attraction/delAttraction.do",idArr).success(function(response){
 				if(response.success != null){
 					angular.forEach(arr, function(po,index,array){
 						if(po.isSelected == true){
