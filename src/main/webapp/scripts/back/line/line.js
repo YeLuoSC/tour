@@ -53,7 +53,17 @@ app.controller('lineController',function($scope,$http,lineService){
 	$scope.showUpdateWin = function(po){
 		$("#updateWin").modal('show');
 		lineService.getTourLineInfo(po,$scope);
-	}
+	};
+	
+	$scope.search = function(searchValue){
+		if(searchValue.tourTypeId != null || searchValue.tourLineName != null){
+			$scope.paginationConf.page.searchParams=
+				[{"key":"tourTypeId","value":searchValue.tourTypeId},{"key":"tourLineName","value":searchValue.tourLineName}];
+		}else{
+			$scope.paginationConf.page.searchParams=[];
+		}
+		lineService.getData($scope);
+	};
 });
 
 app.service('lineService',function($http){

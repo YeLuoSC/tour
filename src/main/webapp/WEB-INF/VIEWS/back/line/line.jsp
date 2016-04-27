@@ -19,8 +19,24 @@
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<button type="button" class="btn btn-primary" ng-click="showAddWin()">新增</button>
-						<button type="button" class="btn btn-danger" ng-click="delBatch()">删除</button>
+						<form class="form-inline">
+							<div class="form-group">
+								<button type="button" class="btn btn-primary" ng-click="showAddWin()">新增</button>
+								<button type="button" class="btn btn-danger" ng-click="delBatch()">删除</button>
+							</div>
+							
+							<div class="form-group"><label>路线名称：</label>
+								<input type="text" class="form-control" ng-model="searchValue.tourLineName">
+							</div>
+							<div class="form-group"><label>旅游类型：</label>
+								<select class="form-control" ng-model="searchValue.tourTypeId" ng-options="tourTypePO.tourTypeId as tourTypePO.tourTypeName for tourTypePO in tourTypeList">
+									<option value="">--请选择--</option>
+								</select>
+							</div>
+							<button type="button" class="btn btn-primary" ng-click="searchValue={};">清空</button>
+							<button type="butotn" class="btn btn-primary" ng-click="search(searchValue)">搜索</button> 
+						</form>
+						
 					</div>
 					<div class="panel-body">
 						<table class="table table-striped table-hover">
@@ -78,7 +94,9 @@
 							</div>
 							<div class="form-group">
 								<label>所属旅游类型：</label>
-								<select class="form-control"  placeholder="请选择"  ng-model="po.tourTypeId" ng-options="tourTypePO.tourTypeId as tourTypePO.tourTypeName for tourTypePO in tourTypeList"></select>
+								<select class="form-control" ng-model="po.tourTypeId" ng-options="tourTypePO.tourTypeId as tourTypePO.tourTypeName for tourTypePO in tourTypeList">
+									<option value="">--请选择--</option>
+								</select>
 							</div>
 							<div class="form-group">
 								<label>价格：</label>
@@ -137,7 +155,9 @@
 							</div>
 							<div class="form-group">
 								<label>所属旅游类型：</label>
-								<select class="form-control"  placeholder="请选择"  ng-model="po.tourTypeId" ng-options="tourTypePO.tourTypeId as tourTypePO.tourTypeName for tourTypePO in tourTypeList"></select>
+								<select class="form-control" ng-model="po.tourTypeId" ng-options="tourTypePO.tourTypeId as tourTypePO.tourTypeName for tourTypePO in tourTypeList">
+									<option value="">--请选择--</option>
+								</select>
 							</div>
 							<div class="form-group">
 								<label>价格：</label>

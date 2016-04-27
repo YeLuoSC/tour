@@ -2,6 +2,7 @@ package com.product.tour.back.tourtype.po;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,7 +12,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Table(name="TOU_T_TOURTYPE")
 public class TourTypePO {
 	@Id
-	@GeneratedValue(generator = "JDBC")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer tourtypeid;
 	
 	@Column(name="tourTypeName")

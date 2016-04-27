@@ -8,11 +8,16 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import tk.mybatis.mapper.entity.Example;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.product.common.po.PageParam;
+import com.product.common.po.SearchParam;
 import com.product.tour.back.attraction.dao.AttractionMapper;
 import com.product.tour.back.attraction.po.AttractionPO;
 import com.product.tour.back.attraction.service.IAttractionService;
+import com.product.tour.back.tourtype.po.TourTypePO;
 @Service
 public class AttractionServiceImpl implements IAttractionService{
 
@@ -20,10 +25,18 @@ public class AttractionServiceImpl implements IAttractionService{
 	private AttractionMapper attractionMapper;
 
 	@Override
-	public PageInfo getPageInfo(PageInfo pageInfo) {
-		PageHelper.startPage(pageInfo.getPageNum(),pageInfo.getPageSize());
-		List<AttractionPO> list = attractionMapper.getAttraction();
-		PageInfo result = new PageInfo(list);
+	public PageParam getPageInfo(PageParam pageParam) {
+		PageHelper.startPage(pageParam.getPageNum(),pageParam.getPageSize());
+		List<AttractionPO> list = null;
+		String attractionName = null;
+		if(pageParam.getSearchParams() != null && pageParam.getSearchParams().size() > 0){
+			List<SearchParam> sps = pageParam.getSearchParams();
+			for(SearchParam sp : sps){
+				attractionName = "%" + sp.getValue() +"%";
+			}
+		}
+		list = attractionMapper.getAttraction(attractionName);
+		PageParam result = new PageParam(list);
 		return result;
 	}
 

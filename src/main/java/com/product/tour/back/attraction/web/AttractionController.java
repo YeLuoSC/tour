@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.pagehelper.PageInfo;
+import com.product.common.po.PageParam;
 import com.product.tour.back.attraction.po.AttractionPO;
 import com.product.tour.back.attraction.service.IAttractionService;
 import com.product.tour.back.city.external.ICityExternalService;
@@ -33,9 +33,9 @@ public class AttractionController {
 	
 	@RequestMapping("/getAttraction")
 	@ResponseBody
-	public Object getAttraction(@RequestBody PageInfo page){
-		page = attractionServiceImpl.getPageInfo(page);
-		return page;
+	public Object getAttraction(@RequestBody PageParam pageParam){
+		pageParam = attractionServiceImpl.getPageInfo(pageParam);
+		return pageParam;
 	}
 	
 	@RequestMapping("/getAttractionInfo")

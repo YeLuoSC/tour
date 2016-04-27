@@ -4,7 +4,7 @@ app.controller('tourTypeController',function($scope,$http,tourTypeService){
 	$scope.paginationConf = {
 		page:{
 			pageNum: 1,
-			pageSize: 20
+			pageSize: 10
 		},
 		callback:{
 			onChange:function(){
@@ -45,7 +45,16 @@ app.controller('tourTypeController',function($scope,$http,tourTypeService){
 	$scope.add = function(po){
 		tourTypeService.add(po);
 		$("#addWin").modal('hide');
-	}
+	};
+	
+	$scope.search = function(searchValue){
+		if(searchValue != null){
+			$scope.paginationConf.page.searchParams=[{"key":"tourTypeName","value":searchValue.tourTypeName}];
+		}else{
+			$scope.paginationConf.page.searchParams=[];
+		}
+		tourTypeService.getData($scope);
+	};
 });
 
 app.service('tourTypeService',function($http){

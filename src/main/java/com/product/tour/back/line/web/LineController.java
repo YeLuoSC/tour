@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.product.common.po.PageParam;
 import com.product.tour.back.line.po.TourLinePO;
 import com.product.tour.back.line.service.ITourLineService;
 import com.product.tour.back.tourtype.external.ITourTypeExternalService;
@@ -33,9 +34,9 @@ public class LineController {
 	
 	@RequestMapping("/getTourLine")
 	@ResponseBody
-	public Object getTourLine(@RequestBody PageInfo page){
-		page = tourLineServiceImpl.getTourLine(page);
-		return page;
+	public Object getTourLine(@RequestBody PageParam pageParam){
+		pageParam = tourLineServiceImpl.getPageInfo(pageParam);
+		return pageParam;
 	}
 	
 	/**
@@ -47,25 +48,25 @@ public class LineController {
 	@RequestMapping("/getTourLineInfo")
 	@ResponseBody
 	public Object getTourLineInfo(@RequestBody Integer tourlineid){
-		return tourLineServiceImpl.getTourLinePOByTourLineId(tourlineid);
+		return tourLineServiceImpl.getPOByPrimaryKey(tourlineid);
 	}
 	
 	@RequestMapping("/delTourLine")
 	@ResponseBody
 	public Object delTourLine(@RequestBody List<String> idList){
-		return tourLineServiceImpl.delTourLine_tx(idList);
+		return tourLineServiceImpl.delByPrimaryKeyList_tx(idList);
 	}
 	
 	@RequestMapping("/updateTourLine")
 	@ResponseBody
-	public Object updateTourLine(@RequestBody TourLinePO TourLinePO){
-		return tourLineServiceImpl.updateTourLine_tx(TourLinePO);
+	public Object updateTourLine(@RequestBody TourLinePO tourLinePO){
+		return tourLineServiceImpl.update_tx(tourLinePO);
 	}
 	
 	@RequestMapping("/addTourLine")
 	@ResponseBody
-	public Object addTourLine(@RequestBody TourLinePO TourLinePO){
-		return tourLineServiceImpl.addTourLine_tx(TourLinePO);
+	public Object addTourLine(@RequestBody TourLinePO tourLinePO){
+		return tourLineServiceImpl.add_tx(tourLinePO);
 		
 	}
 	

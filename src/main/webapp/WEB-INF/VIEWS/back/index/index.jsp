@@ -19,13 +19,12 @@
 <script src="<%=path %>/scripts/back/frame/bootstrap.min.js"></script>
 <script src="<%=path %>/scripts/back/frame/tm.pagination.js"></script>
 <script src="<%=path %>/scripts/plugin/DateTimePicker/bootstrap-datetimepicker.min.js"></script>
-<%--<script src="http://cdn.bootcss.com/angular.js/1.2.9/angular-route.min.js"></script>
---%>
 <script src="<%=path %>/scripts/back/frame/angular-route.min.js"></script>
 <script src="<%=path %>/scripts/back/index/index.js"></script>
 <script src="<%=path %>/scripts/back/tourtype/tourType.js"></script>
 <script src="<%=path %>/scripts/back/line/line.js"></script>
 <script src="<%=path %>/scripts/back/attraction/attraction.js"></script>
+<script src="<%=path %>/scripts/back/book/book.js"></script>
 <%--<script src="<%=path %>/scripts/back/frame/bootstrap-table.js"></script>--%>
 <script>
 	!function ($) {
@@ -96,7 +95,7 @@
 			<li><a href="#tourType"><span class="glyphicon glyphicon-list-alt"></span>旅游类型管理</a></li>
 			<li><a href="#line"><span class="glyphicon glyphicon-info-sign"></span>旅游线路管理</a></li>
 			<li><a href="#attraction"><span class="glyphicon glyphicon-th"></span>景点管理</a></li>
-			<li><a href="import.do"><span class="glyphicon glyphicon-pencil"></span>数据导入</a></li>
+			<li><a href="#book"><span class="glyphicon glyphicon-pencil"></span>预订信息管理</a></li>
 			<li><a href="https://github.com/YeLuoSC/"><span class="glyphicon glyphicon-info-sign"></span>关于作者</a></li>
 			<%--<li class="parent ">
 				<a href="#">

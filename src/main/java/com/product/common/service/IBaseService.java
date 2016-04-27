@@ -3,6 +3,7 @@ package com.product.common.service;
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
+import com.product.common.po.PageParam;
 
 /**
  * 
@@ -19,7 +20,7 @@ public interface IBaseService<T> {
 	 * @param pageInfo
 	 * @return
 	 */
-	public PageInfo getPageInfo(PageInfo pageInfo);
+	public PageParam getPageInfo(PageParam pageParam);
 	
 	/**
 	 * 新增一个T类型的数据至数据库

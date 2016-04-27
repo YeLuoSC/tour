@@ -11,7 +11,7 @@ public interface TourLineMapper extends SuperMapper<TourLinePO>{
 
 	public void deleteTourLine(@Param("idList")List<String> idList);
 	
-	public List<TourLinePO> getTourLine();
+	public List<TourLinePO> getTourLine(@Param("tourLineName")String tourLineName,@Param("tourTypeId")String tourTypeId);
 	
 	public TourLinePO getTourLineByTourLineId(@Param("tourLineId")Integer tourLineId);
 }

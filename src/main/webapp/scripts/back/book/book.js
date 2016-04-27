@@ -1,4 +1,4 @@
-app.controller('attractionController',function($scope,$http,attractionService){
+app.controller('bookController',function($scope,$http,bookService){
 	$http.post("attraction/getCityList.do").success(function(response){
 		$scope.cityList = response;
 	});
@@ -10,7 +10,7 @@ app.controller('attractionController',function($scope,$http,attractionService){
 		},
 		callback:{
 			onChange:function(){
-	        	attractionService.getData($scope);
+	        	bookService.getData($scope);
 	        }
 		}
     };
@@ -22,11 +22,11 @@ app.controller('attractionController',function($scope,$http,attractionService){
 	};
 	
 	$scope.update = function(po){
-		attractionService.update(po);
+		bookService.update(po);
 	}
 
 	$scope.del = function(po,index){
-		attractionService.del(po,index);
+		bookService.del(po,index);
 	};
 	
 	$scope.updateChecked = function(po){
@@ -37,11 +37,11 @@ app.controller('attractionController',function($scope,$http,attractionService){
 	};
 	
 	$scope.delBatch = function(){
-		attractionService.delBatch($scope.data);
+		bookService.delBatch($scope.data);
 	};
 	
 	$scope.add = function(po){
-		attractionService.add(po);
+		bookService.add(po);
 		$("#addWin").modal('hide');
 	}
 	
@@ -52,7 +52,7 @@ app.controller('attractionController',function($scope,$http,attractionService){
 	
 	$scope.showUpdateWin = function(po){
 		$("#updateWin").modal('show');
-		attractionService.getAttractionInfo(po,$scope);
+		bookService.getAttractionInfo(po,$scope);
 	};
 	
 	$scope.search = function(searchValue){
@@ -61,11 +61,11 @@ app.controller('attractionController',function($scope,$http,attractionService){
 		}else{
 			$scope.paginationConf.page.searchParams=[];
 		}
-		attractionService.getData($scope);
+		bookService.getData($scope);
 	};
 });
 
-app.service('attractionService',function($http){
+app.service('bookService',function($http){
 	var proData = {};
 	var me = this;
 	this.getData = function(scope){

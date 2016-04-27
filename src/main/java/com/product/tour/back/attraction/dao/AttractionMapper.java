@@ -11,7 +11,7 @@ public interface AttractionMapper extends SuperMapper<AttractionPO>{
 	
 	public void deleteAttraction(@Param("idList")List<String> idList);
 	
-	public List<AttractionPO> getAttraction();
+	public List<AttractionPO> getAttraction(@Param("attractionName")String attractionName);
 	
 	public AttractionPO getAttractionByAttractionId(@Param("attractionId")Integer attractionId);
 }

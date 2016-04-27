@@ -12,6 +12,8 @@
  * 			size:当前页的数量
  * 			total:总记录数
  * 			pages：总页数
+ * 			searchParams:[{"字段名称":"值"}],
+ * 			orderParams:[{"字段名称":"ASC"或"DESC"}]
  * 		},
  * 	list:[]数据集合
  * 	}

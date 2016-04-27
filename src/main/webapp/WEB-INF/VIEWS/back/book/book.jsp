@@ -3,14 +3,14 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">景点管理</li>
+				<li class="active">预订信息管理</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">景点管理</h1>
-				<p>设置景点信息，可在前台显示出这些信息</p>
+				<h1 class="page-header">预订信息管理</h1>
+				<p>查看顾客留下的预订信息</p>
 			</div>
 		</div><!--/.row-->
 				
@@ -25,11 +25,11 @@
 								<button type="button" class="btn btn-danger" ng-click="delBatch()">删除</button>
 							</div>
 							
-							<div class="form-group"><label>景点名称：</label>
+							<%--<div class="form-group"><label>景点名称：</label>
 								<input type="text" class="form-control" ng-model="searchValue.attractionName">
 								<button type="button" class="btn btn-primary" ng-click="searchValue=null;">清空</button>
 								<button type="butotn" class="btn btn-primary" ng-click="search(searchValue)">搜索</button> 
-							</div>
+							</div>--%>
 						</form>
 						
 					</div>
@@ -39,10 +39,10 @@
 						    <tr>
 						        <th><input type="checkbox"  ng-model="allchecked" ng-change="checkAll(allchecked)"/></th>
 						        <th>序号</th>
-						        <th>景点名称</th>
-						        <th>所属城市</th>
-						        <th>排序号</th>
-						        <th>前台是否可见</th>
+						        <th>顾客姓名</th>
+						        <th>国籍</th>
+						        <th>预订类型</th>
+						        <th>预订项目</th>
 						        <th>操作</th>
 						    </tr>
 						    </thead>

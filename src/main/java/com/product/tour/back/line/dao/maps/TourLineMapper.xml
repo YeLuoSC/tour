@@ -22,12 +22,14 @@
  			<result column="tourTypeName" property="tourTypeName"/>
  		</association>
  	</resultMap>
-    <select id="deleteTourLine">  
+    <update id="deleteTourLine">  
        update tou_t_tourline set status='2' where tourlineid in <foreach collection="idList" item="id" separator="," open="(" close=")">#{id}</foreach>
-    </select>  
+    </update>  
 
     <select id="getTourLine" resultMap="tourLinePO">
-    	select t1.tourlineid,t1.tourlinename,t1.status,t1.price,date_format(t1.startdate,'%Y-%m-%d') startdate,t1.summary,t2.tourTypeName,t1.visiable,t1.orderid from tou_t_tourline t1,tou_t_tourtype t2 where t1.tourtypeid=t2.tourtypeid
+    	select t1.tourlineid,t1.tourlinename,t1.status,t1.price,date_format(t1.startdate,'%Y-%m-%d') startdate,t1.summary,t2.tourTypeName,t1.visiable,t1.orderid from tou_t_tourline t1,tou_t_tourtype t2 
+    	 where t1.tourtypeid=t2.tourtypeid <if test="tourLineName != null"> and t1.tourlinename like #{tourLineName}</if>
+    	  <if test="tourTypeId != null"> and t1.tourtypeid=#{tourTypeId}</if>
     </select>
     
     <select id="getTourLineByTourLineId" resultMap="tourLinePO">

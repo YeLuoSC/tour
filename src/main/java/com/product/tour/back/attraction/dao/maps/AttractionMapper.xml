@@ -20,12 +20,13 @@
  			<result column="cityName" property="cityName"/>
  		</association>
  	</resultMap>
-    <select id="deleteAttraction">  
+    <update id="deleteAttraction">  
        update tou_t_attraction set status='2' where attractionid in <foreach collection="idList" item="id" separator="," open="(" close=")">#{id}</foreach>
-    </select>  
+    </update>  
 
     <select id="getAttraction" resultMap="attractionPO">
-    	select t1.*,t2.* from tou_t_attraction t1,tou_t_city t2 where t1.cityid=t2.cityid
+    	select t1.*,t2.* from tou_t_attraction t1,tou_t_city t2 where t1.cityid=t2.cityid <if test="attractionName!=null">
+    	and t1.attractionname like #{attractionName}</if>
     </select>
     
     <select id="getAttractionByAttractionId" resultMap="attractionPO">
