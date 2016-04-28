@@ -2,9 +2,11 @@ package com.product.tour.back.attraction.po;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import tk.mybatis.mapper.annotation.NameStyle;
@@ -18,7 +20,7 @@ import com.product.tour.back.city.po.CityPO;
 public class AttractionPO {
 
 	@Id
-	@GeneratedValue(generator = "JDBC")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer attractionId;
 	
 	@Column(name="attractionName")
@@ -41,6 +43,9 @@ public class AttractionPO {
 	
 	@Column(name="visiable")
 	private String visiable;
+	
+	@Column(name="thumbnail")
+	private String thumbnail;
 	
 	@Transient
 	private CityPO cityPO;
@@ -117,5 +122,14 @@ public class AttractionPO {
 		this.visiable = visiable;
 	}
 
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	
 	
 }

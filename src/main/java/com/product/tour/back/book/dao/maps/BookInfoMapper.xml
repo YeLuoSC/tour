@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+   
+<mapper namespace="com.product.tour.back.book.dao.BookInfoMapper">  
+	
+ 
+    <update id="deleteBookInfo">  
+       update tou_t_bookinfo set status='2' where bookinfoid in <foreach collection="idList" item="id" separator="," open="(" close=")">#{id}</foreach>
+    </update>  
+    
+    <select id="getBookInfoByBookId" resultType="com.product.tour.back.book.po.BookInfoPO">
+    	select t1.*  from tou_t_bookinfo t1 where  t1.bookinfoid=#{bookInfoId}
+    </select>
+       
+</mapper>  

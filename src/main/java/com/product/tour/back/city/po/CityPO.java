@@ -16,7 +16,7 @@ import tk.mybatis.mapper.code.Style;
 public class CityPO {
 
 	
-	@Id()
+	@Id
 	@GeneratedValue(generator = "JDBC")
 	private Integer cityId;
 	

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -11,15 +12,19 @@ import javax.persistence.Transient;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+import tk.mybatis.mapper.annotation.NameStyle;
+import tk.mybatis.mapper.code.Style;
+
 import com.product.common.jackson.CustomDateSerializer;
 import com.product.tour.back.tourtype.po.TourTypePO;
 
+@NameStyle(Style.normal)
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Table(name="TOU_T_TOURLINE")
 public class TourLinePO {
 
 	@Id
-	@GeneratedValue(generator = "JDBC")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer tourlineid;
 	
 	@Column(name="tourTypeId")
@@ -49,10 +54,11 @@ public class TourLinePO {
 	@Column(name="visiable")
 	private String visiable;
 	
+	@Column(name="thumbnail")
+	private String thumbnail;
+	
 	@Transient
 	private TourTypePO tourTypePO;
-
-
 	
 	public Integer getTourlineid() {
 		return tourlineid;
@@ -143,6 +149,15 @@ public class TourLinePO {
 	public void setVisiable(String visiable) {
 		this.visiable = visiable;
 	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	
 	
 	
 }

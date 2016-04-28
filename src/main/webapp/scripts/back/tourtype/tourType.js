@@ -4,7 +4,7 @@ app.controller('tourTypeController',function($scope,$http,tourTypeService){
 	$scope.paginationConf = {
 		page:{
 			pageNum: 1,
-			pageSize: 10
+			pageSize: 20
 		},
 		callback:{
 			onChange:function(){

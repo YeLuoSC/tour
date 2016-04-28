@@ -20,6 +20,7 @@
 <script src="<%=path %>/scripts/back/frame/tm.pagination.js"></script>
 <script src="<%=path %>/scripts/plugin/DateTimePicker/bootstrap-datetimepicker.min.js"></script>
 <script src="<%=path %>/scripts/back/frame/angular-route.min.js"></script>
+<script src="<%=path %>/scripts/back/frame/ajaxfileupload.js"></script>
 <script src="<%=path %>/scripts/back/index/index.js"></script>
 <script src="<%=path %>/scripts/back/tourtype/tourType.js"></script>
 <script src="<%=path %>/scripts/back/line/line.js"></script>
@@ -27,6 +28,7 @@
 <script src="<%=path %>/scripts/back/book/book.js"></script>
 <%--<script src="<%=path %>/scripts/back/frame/bootstrap-table.js"></script>--%>
 <script>
+	
 	!function ($) {
 		$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
 			$(this).find('em:first').toggleClass("glyphicon-minus");	  

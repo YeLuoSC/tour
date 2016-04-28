@@ -16,6 +16,7 @@
  		<result column="orderid" property="orderId"/>
  		<result column="visiable" property="visiable"/>
  		<result column="tourtypeid" property="tourTypeId"/>
+ 		<result column="thumbnail" property="thumbnail"/>
  		<association property="tourTypePO" javaType="com.product.tour.back.tourtype.po.TourTypePO">
  			<id column="tourtypeid" property="tourtypeid"/>
  			<result column="status" property="status"/>

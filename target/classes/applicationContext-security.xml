@@ -20,7 +20,7 @@
    <http pattern="/fonts/**" security="none"></http>
    <http pattern="/system/resources/**" security="none"></http>
    <http pattern="/front/**" security="none"/>
-   <http pattern="/common/picUpload.do" security="none"/>
+   <http pattern="/common/*picUpload.do" security="none"/>
   <http pattern="/back/login.do" security="none"/>
    <http auto-config="true" use-expressions="true">
      <form-login login-page="/back/login.do"  default-target-url="/back/index.do"/>

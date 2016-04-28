@@ -14,6 +14,7 @@
  		<result column="orderid" property="orderId"/>
  		<result column="visiable" property="visiable"/>
  		<result column="cityid" property="cityId"/>
+ 		<result column="thumbnail" property="thumbnail"/>
  		<association property="cityPO" javaType="com.product.tour.back.city.po.CityPO">
  			<id column="cityid" property="cityId"/>
  			<result column="status" property="status"/>

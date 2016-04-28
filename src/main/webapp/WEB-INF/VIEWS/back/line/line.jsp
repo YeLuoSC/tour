@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>	
+	<script type="text/javascript">
+		var basePath = "<%=request.getContextPath() %>";
+	</script>
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<div class="row">
 			<ol class="breadcrumb">
@@ -123,6 +126,15 @@
 								<input type="number" class="form-control" ng-model="po.orderId" placeholder="请输入展示时的顺序序号"/>
 							</div>
 							<div class="form-group">
+								<label>缩略图上传:</label>
+								<form action="" method="post" enctype="multipart/form-data" id="uploadForm">
+									<input type="file" id="upload" name="upload"/>
+									<img alt="缩略图" id="thumbnail-return" style="width:0px;height:0px">
+									<input type="hidden" id="imgurl" ng-model="po.thumbnail"/>
+									<button type="button" id="uploadbtn" class="btn btn-success" ng-click="uploadThumbnail();">上传</button>
+								</form>
+							</div>
+							<div class="form-group">
 								<label>路线简介（限200字）：剩余{{200 - po.summary.length}}字</label>
 								<textarea rows="4" cols="20" class="form-control" placeholder="请输入该线路简介的名称" ng-model="po.summary"></textarea>
 							</div>
@@ -182,6 +194,16 @@
 							<div class="form-group">
 								<label>排序号</label>
 								<input type="number" class="form-control" ng-model="po.orderId"/>
+							</div>
+							<div class="form-group">
+								<label>缩略图:</label><br>
+								<img alt="缩略图" src="{{po.thumbnail}}" style="width:450px;height:300px" id="thumbnailOld">
+								<form action="" method="post" enctype="multipart/form-data" id="uploadForm">
+									<input type="file" id="updateUpload" name="updateUpload"/>
+									<img alt="缩略图" id="thumbnail-return-update" style="width:0px;height:0px">
+									<input type="hidden" id="imgurl" ng-model="po.thumbnail"/>
+									<button type="button" id="uploadbtn" class="btn btn-success" ng-click="updateThumbnail();">上传</button>
+								</form>
 							</div>
 							<div class="form-group">
 								<label>路线简介（限200字）：剩余{{200 - po.summary.length}}字</label>
