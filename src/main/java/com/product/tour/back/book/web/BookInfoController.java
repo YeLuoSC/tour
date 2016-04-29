@@ -24,7 +24,7 @@ public class BookInfoController {
 	
 	@RequestMapping("")
 	public String page(){
-		return ROOT_PATH + "BookInfo";
+		return ROOT_PATH + "bookInfo";
 	}
 	
 	@RequestMapping("/getBookInfo")

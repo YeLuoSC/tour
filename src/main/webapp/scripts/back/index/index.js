@@ -15,8 +15,8 @@ app.config(function($routeProvider){
 		templateUrl:'attraction.do',
 		controller:'attractionController'
 	}).when('/book',{
-		templateUrl:'book.do',
-		controller:'bookController'
+		templateUrl:'bookInfo.do',
+		controller:'bookInfoController'
 	});
 });
 

@@ -12,5 +12,7 @@ public interface BookInfoMapper extends SuperMapper<BookInfoPO>{
 	public BookInfoPO getBookInfoByBookInfoId(@Param("bookInfoId")Integer bookInfoId);
 
 	public void deleteBookInfo(@Param("idList")List<String> idList);
+	
+	public List<BookInfoPO> getBookInfo();
 
 }

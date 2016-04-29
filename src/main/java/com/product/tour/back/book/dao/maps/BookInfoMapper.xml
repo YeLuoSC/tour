@@ -4,7 +4,45 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
    
 <mapper namespace="com.product.tour.back.book.dao.BookInfoMapper">  
-	
+	<!-- <resultMap type="com.product.tour.back.book.po.BookInfoPO" id="bookInfoPO">
+ 		<id column="bookInfoId" property="bookInfoId"/>
+ 		<result column="customerName" property="customerName"/>
+ 		<result column="status" property="status"/>
+ 		<result column="fromCountry" property="fromCountry"/>
+ 		<result column="bookType" property="bookType"/>
+ 		<result column="relationId" property="relationId"/>
+ 		<result column="customerInfo" property="customerInfo"/>
+ 		<result column="phoneNumber" property="phoneNumber"/>
+ 		<result column="email" property="email"/>
+ 		<result column="replyInfo" property="replyInfo"/>
+ 		<association property="attractionPO" javaType="com.product.tour.back.attraction.po.AttractionPO">
+ 			<id column="relationId" property="attractionId"/>
+ 			<result column="attractionName" property="attractionName"/>
+ 		</association>
+ 		<association property="tourLinePO" javaType="com.product.tour.back.line.po.TourLinePO">
+ 			<id column="relationId" property="tourlineid"/>
+ 			<result column="tourLineName" property="tourLineName"/>
+ 		</association>
+ 	</resultMap> -->
+ 	<resultMap type="com.product.tour.back.book.po.BookInfoPO" id="bookInfoPO">
+ 		<id column="bookInfoId" property="bookInfoId"/>
+ 		<result column="customerName" property="customerName"/>
+ 		<result column="status" property="status"/>
+ 		<result column="fromCountry" property="fromCountry"/>
+ 		<result column="bookType" property="bookType"/>
+ 		<result column="relationId" property="relationId"/>
+ 		<result column="customerInfo" property="customerInfo"/>
+ 		<result column="phoneNumber" property="phoneNumber"/>
+ 		<result column="email" property="email"/>
+ 		<result column="replyInfo" property="replyInfo"/>
+ 		<result column="name" property="name"/>
+ 	</resultMap>
+ 
+ 	<select id="getBookInfo" resultMap="bookInfoPO">
+ 		SELECT T1.*,T2.ATTRACTIONNAME NAME FROM TOU_T_BOOKINFO T1,TOU_T_ATTRACTION T2 WHERE T1.BOOKTYPE='0' AND T1.RELATIONID=T2.ATTRACTIONID
+ 		UNION
+ 		SELECT T1.*,T2.TOURLINENAME NAME FROM TOU_T_BOOKINFO T1,TOU_T_TOURLINE T2 WHERE T1.BOOKTYPE='1' AND T1.RELATIONID=T2.TOURLINEID  
+ 	</select>
  
     <update id="deleteBookInfo">  
        update tou_t_bookinfo set status='2' where bookinfoid in <foreach collection="idList" item="id" separator="," open="(" close=")">#{id}</foreach>

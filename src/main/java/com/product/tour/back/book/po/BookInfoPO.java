@@ -1,5 +1,6 @@
 package com.product.tour.back.book.po;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,36 +22,51 @@ public class BookInfoPO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer bookInfoId;
 	
+	@Column(name="customerName")
 	private String customerName;
 	
+	@Column(name="fromCountry")
 	private String fromCountry;
 	
 	/**
 	 * 预定类型：0为景点，1为路线
 	 */
+	@Column(name="bookType")
 	private String bookType;
 	
 	/**
 	 * 关联预订ID，可能是景点的ID可能是路线的ID
 	 */
+	@Column(name="relationId")
 	private Integer relationId;
 	
 	/**
 	 * 游客留下的语言信息
 	 */
+	@Column(name="customerInfo")
 	private String customerInfo;
 	
+	@Column(name="phoneNumber")
 	private String phoneNumber;
 	
+	@Column(name="email")
 	private String email;
 	
 	/**
 	 * 业务人员回复的信息
 	 */
+	@Column(name="replyInfo")
 	private String replyInfo;
 	
+	@Column(name="status")
 	private String status;
 
+	/**
+	 * 根据bookType值不同，显示对应的路线或者景点名称
+	 */
+	@Transient
+	private String name;
+	
 	@Transient
 	private TourLinePO tourLinePO;
 	
@@ -151,6 +167,14 @@ public class BookInfoPO {
 
 	public void setAttractionPO(AttractionPO attractionPO) {
 		this.attractionPO = attractionPO;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

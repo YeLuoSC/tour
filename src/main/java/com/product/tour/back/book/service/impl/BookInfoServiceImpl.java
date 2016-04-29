@@ -39,7 +39,7 @@ public class BookInfoServiceImpl implements IBookInfoService{
 			result = new PageParam(list,pageParam);
 			
 		}else{
-			List<BookInfoPO> list = bookInfoMapper.selectAll();
+			List<BookInfoPO> list = bookInfoMapper.getBookInfo();
 			result = new PageParam(list);
 		}
 		return result;

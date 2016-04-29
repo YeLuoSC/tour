@@ -25,7 +25,7 @@
 <script src="<%=path %>/scripts/back/tourtype/tourType.js"></script>
 <script src="<%=path %>/scripts/back/line/line.js"></script>
 <script src="<%=path %>/scripts/back/attraction/attraction.js"></script>
-<script src="<%=path %>/scripts/back/book/book.js"></script>
+<script src="<%=path %>/scripts/back/book/bookInfo.js"></script>
 <%--<script src="<%=path %>/scripts/back/frame/bootstrap-table.js"></script>--%>
 <script>
 	

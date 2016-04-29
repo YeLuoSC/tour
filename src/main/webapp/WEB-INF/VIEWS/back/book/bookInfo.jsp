@@ -21,7 +21,7 @@
 					<div class="panel-heading">
 						<form class="form-inline">
 							<div class="form-group">
-								<button type="button" class="btn btn-primary" ng-click="showAddWin()">新增</button>
+								<%--<button type="button" class="btn btn-primary" ng-click="showAddWin()">新增</button>--%>
 								<button type="button" class="btn btn-danger" ng-click="delBatch()">删除</button>
 							</div>
 							
@@ -41,8 +41,11 @@
 						        <th>序号</th>
 						        <th>顾客姓名</th>
 						        <th>国籍</th>
+						        <th>联系电话</th>
+						        <th>EMAIL</th>
 						        <th>预订类型</th>
 						        <th>预订项目</th>
+						        <th>留言信息</th>
 						        <th>操作</th>
 						    </tr>
 						    </thead>
@@ -50,12 +53,15 @@
 						    	<tr ng-repeat="x in data"  ng-hide="x.hidden==true">
 						    		<td><input type="checkbox"  ng-click="updateChecked(x)" ng-model="x.isSelected"/></td>
 						    		<td>{{$index+1}}</td>
-						    		<td>{{x.attractionName}}</td>
-						    		<td>{{x.cityPO.cityName}}</td>
-									<td>{{x.orderId}}</td>
-									<td><span ng-if="x.visiable=='1'">可见</span><span ng-if="x.visiable=='0'">不可见</span></td>
+						    		<td>{{x.customerName}}</td>
+						    		<td>{{x.fromCountry}}</td>
+						    		<td>{{x.phoneNumber}}</td>
+						    		<td>{{x.email}}</td>
+									<td><span ng-if="x.bookType=='0'">景点</span><span ng-if="x.bookType=='1'">旅游路线</span></td>
+									<td>{{x.name}}</td>
+									<td>{{x.customerInfo}}</td>
 						    		<td>
-						    			<span class="btn btn-primary btn-xs" title="编辑" ng-click="showUpdateWin(x)" ng-if="!x.editable"><i class="glyphicon glyphicon-pencil"></i></span>
+						    			<span class="btn btn-primary btn-xs" title="回复" ng-click="showUpdateWin(x)" ng-if="!x.editable"><i class="glyphicon glyphicon-pencil"></i></span>
 						    		</td>
 						    	</tr>
 						    </tbody>

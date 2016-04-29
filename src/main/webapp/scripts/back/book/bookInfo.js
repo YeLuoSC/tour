@@ -1,7 +1,7 @@
-app.controller('bookController',function($scope,$http,bookService){
-	$http.post("attraction/getCityList.do").success(function(response){
-		$scope.cityList = response;
-	});
+app.controller('bookInfoController',function($scope,$http,bookInfoService){
+//	$http.post("attraction/getCityList.do").success(function(response){
+//		$scope.cityList = response;
+//	});
 	//配置分页基本参数
 	$scope.paginationConf = {
 		page:{
@@ -10,7 +10,7 @@ app.controller('bookController',function($scope,$http,bookService){
 		},
 		callback:{
 			onChange:function(){
-	        	bookService.getData($scope);
+	        	bookInfoService.getData($scope);
 	        }
 		}
     };
@@ -22,11 +22,11 @@ app.controller('bookController',function($scope,$http,bookService){
 	};
 	
 	$scope.update = function(po){
-		bookService.update(po);
+		bookInfoService.update(po);
 	}
 
 	$scope.del = function(po,index){
-		bookService.del(po,index);
+		bookInfoService.del(po,index);
 	};
 	
 	$scope.updateChecked = function(po){
@@ -37,11 +37,11 @@ app.controller('bookController',function($scope,$http,bookService){
 	};
 	
 	$scope.delBatch = function(){
-		bookService.delBatch($scope.data);
+		bookInfoService.delBatch($scope.data);
 	};
 	
 	$scope.add = function(po){
-		bookService.add(po);
+		bookInfoService.add(po);
 		$("#addWin").modal('hide');
 	}
 	
@@ -52,7 +52,7 @@ app.controller('bookController',function($scope,$http,bookService){
 	
 	$scope.showUpdateWin = function(po){
 		$("#updateWin").modal('show');
-		bookService.getAttractionInfo(po,$scope);
+		bookInfoService.getAttractionInfo(po,$scope);
 	};
 	
 	$scope.search = function(searchValue){
@@ -61,15 +61,15 @@ app.controller('bookController',function($scope,$http,bookService){
 		}else{
 			$scope.paginationConf.page.searchParams=[];
 		}
-		bookService.getData($scope);
+		bookInfoService.getData($scope);
 	};
 });
 
-app.service('bookService',function($http){
+app.service('bookInfoService',function($http){
 	var proData = {};
 	var me = this;
 	this.getData = function(scope){
-		$http.post("attraction/getAttraction.do",scope.paginationConf.page).success(function(response){
+		$http.post("bookInfo/getBookInfo.do",scope.paginationConf.page).success(function(response){
 			scope.paginationConf.page.total = response.total;
 			scope.data = response.list;
 			proData = scope.data;
@@ -78,7 +78,7 @@ app.service('bookService',function($http){
 	
 	this.add = function(po){
 		po.status='1';
-		$http.post("attraction/addAttraction.do",po).success(function(response){
+		$http.post("bookInfo/addBookInfo.do",po).success(function(response){
 			if(response != null){
 				alert("创建成功!");
 				location.reload();
@@ -88,13 +88,13 @@ app.service('bookService',function($http){
 		});
 	};
 	
-	this.getAttractionInfo = function(po,scope){
-		$http.post("attraction/getAttractionInfo.do",po.attractionId).success(function(response){
+	this.getBookInfo = function(po,scope){
+		$http.post("bookInfo/getBookInfoByBookInfoId.do",po.bookInfoId).success(function(response){
 			scope.po = response;
 		});
 	};
 	this.update = function(po){
-		$http.post("attraction/updateAttraction.do",po).success(function(response){
+		$http.post("bookInfo/updateBookInfo.do",po).success(function(response){
 			if(response != null){
 				alert("更新成功!");
 				location.reload();
@@ -113,7 +113,7 @@ app.service('bookService',function($http){
 			}
 		});
 		if(idArr.length > 0){
-			$http.post("attraction/delAttraction.do",idArr).success(function(response){
+			$http.post("bookInfo/delBookInfo.do",idArr).success(function(response){
 				if(response.success != null){
 					angular.forEach(arr, function(po,index,array){
 						if(po.isSelected == true){
@@ -128,25 +128,3 @@ app.service('bookService',function($http){
 		
 	};
 });
-
-app.directive('ckeditor', function() {
-	    return {
-	        require : '?ngModel',
-	        link : function(scope, element, attrs, ngModel) {
-	            var ckeditor = CKEDITOR.replace(element[0], {
-	                
-	            });
-	            if (!ngModel) {
-	                return;
-	            }
-	            ckeditor.on('pasteState', function() {
-	                scope.$apply(function() {
-	                    ngModel.$setViewValue(ckeditor.getData());
-	                });
-	            });
-	            ngModel.$render = function(value) {
-	                ckeditor.setData(ngModel.$viewValue);
-	            };
-	        }
-	    };
-	});
