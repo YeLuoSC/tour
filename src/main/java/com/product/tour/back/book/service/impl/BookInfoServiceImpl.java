@@ -78,4 +78,9 @@ public class BookInfoServiceImpl implements IBookInfoService{
 		return map;
 	}
 
+	@Override
+	public BookInfoPO getBookInfoByBookInfoId(Integer bookInfoId) {
+		return bookInfoMapper.getBookInfoByBookInfoId(bookInfoId);
+	}
+
 }

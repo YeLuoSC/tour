@@ -76,91 +76,47 @@
 		
 	</div><!--/.main-->
 	<!-- 模态窗口 -->
-	<div class="modal fade"  id="addWin">
-	  <div class="modal-dialog" role="document" style="width:800px;">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">新增景点信息</h4>
-	      </div>
-	      <div class="modal-body">
-	        	<form>
-							<div class="form-group">
-								<label>景点名称：</label>
-								<input type="text" class="form-control" placeholder="请输入该景点的名称" ng-model="po.attractionName"/>
-							</div>
-							<div class="form-group">
-								<label>所属城市：</label>
-								<select class="form-control"  placeholder="请选择"  ng-model="po.cityId" ng-options="cityPO.cityId as cityPO.cityName for cityPO in cityList"></select>
-							</div>
-							<div class="form-group">
-								<label>前台是否可见：</label>
-								<label class="radio-inline">
-									<input type="radio"  name="visiable" ng-model="po.visiable" ng-value="1"/>可见
-								</label>
-								<label class="radio-inline">
-									<input type="radio"  name="visiable" ng-model="po.visiable" ng-value="0"/>不可见
-								</label>
-							</div>
-							<div class="form-group">
-								<label>排序号</label>
-								<input type="number" class="form-control" ng-model="po.orderId" placeholder="请输入展示时的顺序序号"/>
-							</div>
-							<div class="form-group">
-								<label>景点简介（限200字）：剩余{{200 - po.summary.length}}字</label>
-								<textarea rows="4" cols="20" class="form-control" placeholder="请输入该景点简介的名称" ng-model="po.summary"></textarea>
-							</div>
-							<div class="form-group">
-								<label>景点介绍：</label>
-								<textarea ckeditor cols="20" rows="10"  ng-model="po.info"></textarea>
-							</div>
-				</form>
-	      </div>
-	      <div class="modal-footer">
-	    	  	<button type="button" class="btn btn-primary" ng-click="add(po)">保存</button>
-	       		<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
 	
 	<div class="modal fade"  id="updateWin">
 	  <div class="modal-dialog" role="document" style="width:800px;">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">更新旅游线路</h4>
+	        <h4 class="modal-title" id="myModalLabel">回复预订信息</h4>
 	      </div>
 	      <div class="modal-body">
 	        	<form>
 							<div class="form-group">
-								<label>景点名称：</label>
-								<input type="text" class="form-control" placeholder="请输入该景点的名称" ng-model="po.attractionName"/>
+								<label>顾客姓名：</label>
+								<span>{{po.customerName}}</span>
 							</div>
 							<div class="form-group">
-								<label>所属城市：</label>
-								<select class="form-control"  placeholder="请选择"  ng-model="po.cityId" ng-options="cityPO.cityId as cityPO.cityName for cityPO in cityList"></select>
+								<label>国籍：</label>
+								<span>{{po.fromCountry}}</span>
 							</div>
 							<div class="form-group">
-								<label>前台是否可见：</label>
-								<label class="radio-inline">
-									<input type="radio"  name="visiable" ng-model="po.visiable" ng-value="1"/>可见
-								</label>
-								<label class="radio-inline">
-									<input type="radio"  name="visiable" ng-model="po.visiable" ng-value="0"/>不可见
-								</label>
+								<label>联系电话：</label>
+								<span>{{po.phoneNumber}}</span>
 							</div>
 							<div class="form-group">
-								<label>排序号</label>
-								<input type="number" class="form-control" ng-model="po.orderId" placeholder="请输入展示时的顺序序号"/>
+								<label>EMAIL：</label>
+								<span>{{po.email}}</span>
 							</div>
 							<div class="form-group">
-								<label>景点简介（限200字）：剩余{{200 - po.summary.length}}字</label>
-								<textarea rows="4" cols="20" class="form-control" placeholder="请输入该景点简介的名称" ng-model="po.summary"></textarea>
+								<label>预订类型：</label>
+								<span ng-if="po.bookType=='0'">景点</span><span ng-if="po.bookType=='1'">旅游路线</span>
 							</div>
 							<div class="form-group">
-								<label>景点介绍：</label>
-								<textarea ckeditor cols="20" rows="10"  ng-model="po.info"></textarea>
+								<label>预订项目：</label>
+								<span>{{po.name}}</span>
+							</div>
+							<div class="form-group">
+								<label>留言信息：</label>
+								<span>{{po.customerInfo}}</span>
+							</div>
+							<div class="form-group">
+								<label>反馈信息：</label>
+								<textarea cols="100" rows="10"  ng-model="po.replyInfo"></textarea>
 							</div>
 				</form>
 	      </div>

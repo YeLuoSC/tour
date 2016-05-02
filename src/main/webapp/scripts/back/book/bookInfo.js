@@ -52,7 +52,7 @@ app.controller('bookInfoController',function($scope,$http,bookInfoService){
 	
 	$scope.showUpdateWin = function(po){
 		$("#updateWin").modal('show');
-		bookInfoService.getAttractionInfo(po,$scope);
+		bookInfoService.getBookInfoById(po,$scope);
 	};
 	
 	$scope.search = function(searchValue){
@@ -88,7 +88,7 @@ app.service('bookInfoService',function($http){
 		});
 	};
 	
-	this.getBookInfo = function(po,scope){
+	this.getBookInfoById = function(po,scope){
 		$http.post("bookInfo/getBookInfoByBookInfoId.do",po.bookInfoId).success(function(response){
 			scope.po = response;
 		});
@@ -109,7 +109,7 @@ app.service('bookInfoService',function($http){
 		angular.forEach(arr, function(po,index,array){
 			 //data等价于array[index]
 			if(po.isSelected == true){
-				idArr.push(po.attractionId);
+				idArr.push(po.bookInfoId);
 			}
 		});
 		if(idArr.length > 0){

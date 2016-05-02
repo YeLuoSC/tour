@@ -51,4 +51,12 @@ public class BookInfoController {
 		return bookInfoServiceImpl.add_tx(bookInfoPO);
 		
 	}
+	
+	@RequestMapping("/getBookInfoByBookInfoId")
+	@ResponseBody
+	public Object getBookInfoByBookInfoId(@RequestBody Integer bookInfoId){
+		return bookInfoServiceImpl.getBookInfoByBookInfoId(bookInfoId);
+		
+	}
+	
 }
