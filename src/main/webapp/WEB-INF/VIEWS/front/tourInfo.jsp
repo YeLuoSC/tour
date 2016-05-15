@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +30,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<%=path %>/scripts/front/frame/jquery.mixitup.min.js"></script>
 <script src="<%=path %>/scripts/front/frame/jquery.swipebox.min.js"></script> 
 <script src="<%=path %>/scripts/front/frame/responsiveslides.min.js"></script>
+<script src="<%=path %>/scripts/front/frame/bootstrap.min.js"></script>
+<script src="<%=path %>/scripts/back/frame/angular.min.js"></script>
+<script src="<%=path %>/scripts/back/frame/tm.pagination.js"></script>
+<script src="<%=path %>/scripts/front/index/tourInfo.js"></script>
+
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		
@@ -38,21 +45,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</script>
 <!--start-smoth-scrolling-->
 </head>
-<body>
+<body ng-app="myapp" ng-controller="tourInfoController">
 	<!--header-->
 	<div class="header-top" id="home">
 		<div class="container">
 			<div class="header-logo">
-				<a href="index.html"><img src="<%=path %>/images/front/logo.png" alt=""/></a>
+				<img src="<%=path %>/images/front/logo.png" alt=""/>
 			</div>
 			<div class="top-nav">
 				<span class="menu"><img src="<%=path %>/images/front/menu-icon.png" alt=""/></span>
 				<ul class="nav1">
-					<li><a href="index.do">HOME </a></li>
-					<li><a href="tourinfo.do">BEIJING TOUR</a></li>
-					<li><a href="carRental.do">CAR RENTAL</a></li>
-					<li><a href="kungfu.do">KUNGFU SHOW</a></li>
-					<li><a href="acrobatic.do">ACROBATIC SHOW</a></li>
+					<li><a href="index.do">TOURISM </a></li>
+					<li><a href="#" class="active">TOURINFO</a></li>
+					<li><a href="attraction.do">ATTRACTIONS</a></li>
+					<li>
+
+						<div class="dropdown">
+
+						<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="strange-buildings.html">SHOWS</a>
+
+						<ul class="dropdown-menu tourism_dropmenu">
+							<li><a style="width: 160px;background:none;" href="kong_fu.html">Kong Fu</a></li>
+							<li><a style="width: 160px;background:none;" href="acrobatics.html">Acrobatics</a></li>
+						</ul>
+
+						</div>
+
+					</li>
+					<li><a href="404.html">CAR RENTALS</a></li>
 				</ul>
 				<!-- script-for-menu -->
 				 <script>
@@ -73,231 +93,264 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="clearfix"> </div>
 		</div>
-		<div class="search-box">
-			<div id="sb-search" class="sb-search">
-				<form>
-					<input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
-					<input class="sb-search-submit" type="submit" value="">
-					<span class="sb-icon-search"> </span>
-				</form>
-			</div>
-		</div>
-		<div class="header-info-right">
-				<div class="header cbp-spmenu-push">
-					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-							<a href="index.do">HOME</a>
-							<a href="tourinfo.do">BEIJING TOUR</a>
-							<a href="carRental.do">CAR RENTAL</a>
-							<a href="kungfu.do">KUNGFU SHOW</a>
-							<a href="acrobatic.do">ACROBATIC SHOW</a>
-					</nav>
-					<!--script-nav -->	
-					<script>
-						$("span.menu").click(function(){
-							$("ul.navigatoin").slideToggle("300" , function(){
-							});
-						});
-					</script>
-					<script type="text/javascript">
-								jQuery(document).ready(function($) {
-									$(".scroll").click(function(event){		
-										event.preventDefault();
-										$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-									});
-								});
-					</script>
-					<div class="clearfix"> </div>
-						<!-- /script-nav -->
-									<div class="main">
-										<section class="buttonset">
-											<button id="showLeftPush"><img src="<%=path %>/images/front/menu.png" /><span>Menu</span></button>
-										</section>
-									</div>
-									<script>
-										var	menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-											showLeftPush = document.getElementById( 'showLeftPush' ),
-											body = document.body;
-							
-										showLeftPush.onclick = function() {
-				classie.toggle( this, 'active' );
-				classie.toggle( body, 'cbp-spmenu-push-toright' );
-				classie.toggle( menuLeft, 'cbp-spmenu-open' );
-				disableOther( 'showLeftPush' );
-			};
-									</script>
-				</div>
-			</div>
 	</div>
-	<!--//header-->
-	<!--search-scripts-->
-	<script>
-		new UISearch( document.getElementById( 'sb-search' ) );
-	</script>
-	<!--//search-scripts-->
-	<!--magazine-->
-	<div class="magazine">
-		<div class="container">
-			<div class="magazine-top">
-				<div class="col-md-7 magazine-top-left">
-					<div  id="top" class="callbacks_container">
-			    		<ul class="rslides" id="slider4">
-				    		<li>
-								<img src="<%=path %>/images/front/m-1.jpg" alt="" />
-							</li>
-							<li>
-								<img src="<%=path %>/images/front/m-2.jpg" alt="" />
-							</li>
-							<li>
-								<img src="<%=path %>/images/front/m-3.jpg" alt="" />
-							</li>
-							<li>
-								<img src="<%=path %>/images/front/m-4.jpg" alt="" />
-							</li>
-							<li>
-								<img src="<%=path %>/images/front/m-5.jpg" alt="" />
-							</li>
-			     		</ul>
-			 		</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-5 magazine-top-right">
-					<div class="mag-top">
-						<div class="col-md-4 mag-top-left">
-							<a href="single.html"><img src="<%=path %>/images/front/m-6.jpg" alt="" /></a>
-						</div>
-						<div class="col-md-8 mag-top-left">
-							<a href="single.html"><h4>Vestibulum ante ipsum primis</h4></a>
-							<p>Pellentesque et gravida lacus Sed quis gravida elit Vestibulum fermentum.</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="mag-top">
-						<div class="col-md-4 mag-top-left">
-							<a href="single.html"><img src="<%=path %>/images/front/m-8.jpg" alt="" /></a>
-						</div>
-						<div class="col-md-8 mag-top-left">
-							<a href="single.html"><h4>Cras vitae risus nec turpis</h4></a>
-							<p>Pellentesque et gravida lacus Sed quis gravida elit Vestibulum fermentum.</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="mag-top">
-						<div class="col-md-4 mag-top-left">
-							<a href="single.html"><img src="<%=path %>/images/front/m-9.jpg" alt="" /></a>
-						</div>
-						<div class="col-md-8 mag-top-left">
-							<a href="single.html"><h4> Aliquam hendrerit diam nisl</h4></a>
-							<p>Pellentesque et gravida lacus Sed quis gravida elit Vestibulum fermentum.</p>
+
+	<div style="padding-left:200px;padding-right:200px;background-color:#FCFAE1;">
+		<ul class="nav nav-tabs nav-justified" style="border-bottom: 0;">
+		<c:forEach var="tourTypePO" items="${list}" varStatus="status">
+			<li class="<c:if test='${status.index==0 }'>active</c:if>"><a href="#<c:out value='${tourTypePO.tourTypeId}'></c:out>" data-toggle="tab"  ng-click="tabClick(<c:out value='${tourTypePO.tourTypeId}'></c:out>)"><c:out value="${tourTypePO.tourTypeName}"></c:out></a>
+			</li>
+		</c:forEach>
+	</ul>
+	</div>
+	
+
+	<div class="buildings" >
+		<div class="container" >
+		<div class="tab-content">
+			<c:forEach var="tourTypePO" items="${list}" varStatus="status">
+				<div id="<c:out value='${tourTypePO.tourTypeId}'></c:out>"  class="tab-pane fade <c:if test='${status.index==0 }'>in active</c:if>"
+				 <c:if test='${status.index==0 }'>ng-init="init(<c:out value='${tourTypePO.tourTypeId}'></c:out>)"</c:if>>
+					<div class="building-one" >
+						<div class="col-md-3 building-left" ng-repeat="x in data">
+							<a href="detailInfo/getTourLineDetailInfo.do?tourLineId={{x.tourLineId}}"><img src="{{x.thumbnail}}" alt="" /></a>
+							<a href="detailInfo/getTourLineDetailInfo.do?tourLineId={{x.tourLineId}}"><h4>{{x.tourLineName}}</h4></a>
+							<p>{{x.summary}}</p>
+							<div class="build-btn">
+								<a href="detailInfo/getTourLineDetailInfo.do?tourLineId={{x.tourLineId}}" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
 				</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="magazine-bottom">
-					<div class="col-md-7 magazine-bottom-left">
-						<h3>Featured Articles</h3>
-						<div class="mag-btm">
-							<div class="col-md-4 mag-btm-left">
-								<a href="single.html"><img src="<%=path %>/images/front/m-10.jpg" alt="" /></a>
-							</div>
-							<div class="col-md-8 mag-btm-left">
-								<a href="single.html"><h4>Cras vitae risus nec turpis vestibulum convallis fermentum</h4></a>
-								<p>Duis dapibus mi ut volutpat pulvinar. Maecenas tempor aliquet finibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra</p>
-								<div class="m-btn">
-									<a href="single.html" class="hvr-shutter-out-horizontal">Read More</a>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="mag-btm">
-							<div class="col-md-4 mag-btm-left">
-								<a href="single.html"><img src="<%=path %>/images/front/m-11.jpg" alt="" /></a>
-							</div>
-							<div class="col-md-8 mag-btm-left">
-								<a href="single.html"><h4>Phasellus nec augue risus. Aenean egestas bibendum diam eget.</h4></a>
-								<p>Duis dapibus mi ut volutpat pulvinar. Maecenas tempor aliquet finibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra</p>
-								<div class="m-btn">
-									<a href="single.html" class="hvr-shutter-out-horizontal">Read More</a>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="mag-btm">
-							<div class="col-md-4 mag-btm-left">
-								<a href="single.html"><img src="<%=path %>/images/front/m-12.jpg" alt="" /></a>
-							</div>
-							<div class="col-md-8 mag-btm-left">
-								<a href="single.html"><h4>Sed vel hendrerit elit. Ut eu justo urna. Nunc ullamcorper nunc massa</h4></a>
-								<p>Duis dapibus mi ut volutpat pulvinar. Maecenas tempor aliquet finibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra</p>
-								<div class="m-btn">
-									<a href="single.html" class="hvr-shutter-out-horizontal">Read More</a>
-								</div>
-							</div>
-							<div class="clearfix"></div>
+			</c:forEach>
+		</div>
+	<%--<div class="tab-content">
+
+		<div role="tabpanel" class="tab-pan fade in active" id="attractions_food">
+			<div class="buildings-top" >
+				<div class="building-one">
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-1.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
 						</div>
 					</div>
-					<div class="col-md-5 magazine-bottom-left">
-						<h3>Latest News</h3>
-						<div class="latest">
-							<div class="col-md-1 latest-left">
-								<h4>1</h4>
-							</div>
-							<div class="col-md-11 latest-left">
-								<h5>Praesent purus nisl, varius sit amet viverra ac, tempor sed dolor</h5>
-								<p>MARCH 11,2015</p>
-							</div>
-							<div class="clearfix"></div>
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-2.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
 						</div>
-						<div class="latest">
-							<div class="col-md-1 latest-left">
-								<h4>2</h4>
-							</div>
-							<div class="col-md-11 latest-left">
-								<h5>Praesent purus nisl, varius sit amet viverra ac, tempor sed dolor</h5>
-								<p>MARCH 1,2015</p>
-							</div>
-							<div class="clearfix"></div>
+					</div>
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-3.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
 						</div>
-						<div class="latest">
-							<div class="col-md-1 latest-left">
-								<h4>3</h4>
-							</div>
-							<div class="col-md-11 latest-left">
-								<h5>Praesent purus nisl, varius sit amet viverra ac, tempor sed dolor</h5>
-								<p>JANUARY 30,2015</p>
-							</div>
-							<div class="clearfix"></div>
+					</div>
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-5.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
 						</div>
 					</div>
 					<div class="clearfix"></div>
+				</div>
+				<div class="building-one">
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-4.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+						</div>
+					</div>
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-5.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+						</div>
+					</div>
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-6.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+						</div>
+					</div>
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-7.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="building-one">
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-8.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+						</div>
+					</div>
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-2.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+						</div>
+					</div>
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-5.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+						</div>
+					</div>
+					<div class="col-md-3 building-left">
+						<a href="single.html"><img src="<%=path %>/images/front/b-4.jpg" alt="" /></a>
+						<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+						<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+						<div class="build-btn">
+							<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
 			</div>
-		</div>
+			</div>
+
+		<div role="tabpanel" class="tab-pane fade" id="attractions_Resorts">
+			<div class="buildings-top" style="position:absolute;top:200px">
+			<div class="building-one">
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-1.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-2.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-3.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-5.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="building-one">
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-4.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-5.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-6.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-7.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="building-one">
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-8.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-2.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-5.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="col-md-3 building-left">
+							<a href="single.html"><img src="<%=path %>/images/front/b-4.jpg" alt="" /></a>
+							<a href="single.html"><h4>Aliquam ac mattis</h4></a>
+							<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+							<div class="build-btn">
+								<a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+
 	</div>
-	<!--magazine-->
-	<!--Slider-Starts-Here-->
-				
-			 <script>
-			    // You can also use "$(window).load(function() {"
-			    $(function () {
-			      // Slideshow 4
-			      $("#slider4").responsiveSlides({
-			        auto: true,
-			        pager: false,
-			        nav: false,
-			        speed: 500,
-			        namespace: "callbacks",
-			        before: function () {
-			          $('.events').append("<li>before event fired.</li>");
-			        },
-			        after: function () {
-			          $('.events').append("<li>after event fired.</li>");
-			        }
-			      });
-			
-			    });
-			  </script>
-			<!--End-slider-script-->
+    --%></div>
+	</div>
+	<!--buildings-->
 	<!--read-->
 	<div class="read">
 		<div class="container">
@@ -389,7 +442,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="footer-top">
 				<div class="col-md-6 footer-left">
-					<p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></p>
+					<p>Copyright &copy; 2015.CusTour All rights reserved.</p>
 				</div>
 				<div class="col-md-6 footer-right">
 					<a href="index.html"><img src="<%=path %>/images/front/lg.png" alt="" /></a>

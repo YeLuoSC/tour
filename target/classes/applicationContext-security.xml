@@ -15,6 +15,7 @@
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
    <http pattern="/css/**" security="none"></http>   
    <http pattern="/images/**" security="none"></http>
+   <http pattern="/html/**" security="none"></http>
    <http pattern="/upload/images/**" security="none"></http>
    <http pattern="/scripts/**" security="none"></http>
    <http pattern="/fonts/**" security="none"></http>

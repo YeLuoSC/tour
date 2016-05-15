@@ -82,18 +82,6 @@ app.controller('attractionController',function($scope,$http,attractionService){
 				alert("上传失败");  
            }
 		 });  
-//		var args = {
-//			    method: 'POST',
-//			    url: basePath + '/common/commonPicUpload.do',
-//			    data: $scope.uploadtest,
-//			    headers: {'Content-Type': undefined},
-//			    transformRequest: function(data){
-//			    	var formData =new FormData();
-//			    	formData.append("upload",data);
-//			    	return formData;
-//			    }
-//		};
-//		$http(args);
 	};
 	
 	$scope.updateThumbnail = function(obj){
@@ -115,6 +103,10 @@ app.controller('attractionController',function($scope,$http,attractionService){
            }
 		 });  
 	};
+	
+	$scope.preview = function(attractionId){
+		window.open(basePath+"/front/detailInfo/getAttractionDetailInfo.do?attractionId="+attractionId);
+	}
 });
 
 app.service('attractionService',function($http){
@@ -146,15 +138,14 @@ app.service('attractionService',function($http){
 		});
 	};
 	this.update = function(po){
-//		$http.post("attraction/updateAttraction.do",po).success(function(response){
-//			if(response != null){
-//				alert("更新成功!");
-//				location.reload();
-//			}else{
-//				alert("更新失败，请重试！");
-//			}
-//		});
-		alert(po.info);
+		$http.post("attraction/updateAttraction.do",po).success(function(response){
+			if(response != null){
+				alert("更新成功!");
+				location.reload();
+			}else{
+				alert("更新失败，请重试！");
+			}
+		});
 	};
 	
 	this.delBatch = function(arr){
@@ -182,28 +173,27 @@ app.service('attractionService',function($http){
 	};
 });
 
-app.directive('ckeditor', function($window, $q, angularLoad) {
-    return {
-        require: '?ngModel',
-        link: function(scope, elm, attr, ngModel) {
-                var ck = CKEDITOR.replace(elm[0]);
-                if (!ngModel) return;
-                ck.on('instanceReady', function() {
-                    ck.setData(ngModel.$viewValue);
-                });
-                function updateModel() {
-                    scope.$apply(function() {
-                        ngModel.$setViewValue(ck.getData());
-                    });
-                }
-                ck.on('pasteState', updateModel);
-                ck.on('change', updateModel);
-                ck.on('key', updateModel);
-               
+app.directive('ckeditor', function() {
+	return {
+		require : '?ngModel',
+		link : function(scope, element, attrs, ngModel) {
+			var ckeditor = CKEDITOR.replace(element[0], {
 
-                ngModel.$render = function(value) {
-                    ck.setData(ngModel.$viewValue);
-                };
-        }
-    };
+			});
+			if (!ngModel) {
+				return;
+			}
+			ckeditor.on('instanceReady', function() {
+				ckeditor.setData(ngModel.$viewValue);
+			});
+			ckeditor.on('pasteState', function() {
+				scope.$apply(function() {
+					ngModel.$setViewValue(ckeditor.getData());
+				});
+			});
+			ngModel.$render = function(value) {
+				ckeditor.setData(ngModel.$viewValue);
+			};
+		}
+	};
 });

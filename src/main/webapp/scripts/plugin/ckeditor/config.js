@@ -35,5 +35,12 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-	config.filebrowserUploadUrl="/webapp/common/picUpload.do";
+	//config.filebrowserUploadUrl="/webapp/common/picUpload.do";
+	config.filebrowserUploadUrl=function(){
+		var localObj = window.location;
+		var contextPath = localObj.pathname.split("/")[1];
+		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
+		var server_context=basePath;
+		return server_context+"/common/picUpload.do";
+	}();
 };

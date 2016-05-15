@@ -25,7 +25,7 @@ public class TourLinePO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer tourlineid;
+	private Integer tourLineId;
 	
 	@Column(name="tourTypeId")
 	private Integer tourTypeId; 
@@ -60,12 +60,13 @@ public class TourLinePO {
 	@Transient
 	private TourTypePO tourTypePO;
 	
-	public Integer getTourlineid() {
-		return tourlineid;
+	
+	public Integer getTourLineId() {
+		return tourLineId;
 	}
 
-	public void setTourlineid(Integer tourlineid) {
-		this.tourlineid = tourlineid;
+	public void setTourLineId(Integer tourLineId) {
+		this.tourLineId = tourLineId;
 	}
 
 	public Integer getTourTypeId() {

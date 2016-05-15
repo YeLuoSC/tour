@@ -8,12 +8,15 @@ import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import tk.mybatis.mapper.annotation.NameStyle;
+import tk.mybatis.mapper.code.Style;
+@NameStyle(Style.normal)
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Table(name="TOU_T_TOURTYPE")
 public class TourTypePO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer tourtypeid;
+	private Integer tourTypeId;
 	
 	@Column(name="tourTypeName")
 	private String tourTypeName;
@@ -22,11 +25,11 @@ public class TourTypePO {
 	private String status;
 
 	public Integer getTourTypeId() {
-		return tourtypeid;
+		return tourTypeId;
 	}
 
 	public void setTourTypeId(Integer tourTypeId) {
-		this.tourtypeid = tourTypeId;
+		this.tourTypeId = tourTypeId;
 	}
 
 	public String getTourTypeName() {

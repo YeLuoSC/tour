@@ -53,6 +53,10 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor imp
 	            //this.accessDecisionManager.decide(authenticated, object, attributes);   
 	    	AuthenticationManager authenticationManager1 = getAuthenticationManager();
 	        System.out.println("------------MyFilterSecurityInterceptor.doFilter()-----------开始拦截器了....");  
+	        String url = ((HttpServletRequest) request).getServletPath();
+	        if(url.endsWith(".html")){
+	        	return;
+	        }
 	        boolean isAjax = "XMLHttpRequest".equals(((HttpServletRequest) request).getHeader("X-Requested-With"));
 	        System.out.println("判断是否为ajax?"+isAjax);
 	        FilterInvocation fi = new FilterInvocation(request, response, chain); 

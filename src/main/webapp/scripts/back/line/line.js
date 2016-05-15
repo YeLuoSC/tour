@@ -102,6 +102,10 @@ app.controller('lineController',function($scope,$http,lineService){
            }
 		 });  
 	};
+	
+	$scope.preview = function(tourLineId){
+		window.open(basePath+"/front/detailInfo/getTourLineDetailInfo.do?tourLineId="+tourLineId);
+	}
 });
 
 app.service('lineService',function($http){
@@ -128,7 +132,7 @@ app.service('lineService',function($http){
 	};
 	
 	this.getTourLineInfo = function(po,scope){
-		$http.post("line/getTourLineInfo.do",po.tourlineid).success(function(response){
+		$http.post("line/getTourLineInfo.do",po.tourLineId).success(function(response){
 			scope.po = response;
 		});
 	};
@@ -148,7 +152,7 @@ app.service('lineService',function($http){
 		angular.forEach(arr, function(po,index,array){
 			 //data等价于array[index]
 			if(po.isSelected == true){
-				idArr.push(po.tourlineid);
+				idArr.push(po.tourLineId);
 			}
 		});
 		if(idArr.length > 0){
@@ -168,28 +172,27 @@ app.service('lineService',function($http){
 	};
 });
 
-app.directive('ckeditor', function($window, $q, angularLoad) {
-    return {
-        require: '?ngModel',
-        link: function(scope, elm, attr, ngModel) {
-                var ck = CKEDITOR.replace(elm[0]);
-                if (!ngModel) return;
-                ck.on('instanceReady', function() {
-                    ck.setData(ngModel.$viewValue);
-                });
-                function updateModel() {
-                    scope.$apply(function() {
-                        ngModel.$setViewValue(ck.getData());
-                    });
-                }
-                ck.on('pasteState', updateModel);
-                ck.on('change', updateModel);
-                ck.on('key', updateModel);
-               
+app.directive('ckeditor', function() {
+	return {
+		require : '?ngModel',
+		link : function(scope, element, attrs, ngModel) {
+			var ckeditor = CKEDITOR.replace(element[0], {
 
-                ngModel.$render = function(value) {
-                    ck.setData(ngModel.$viewValue);
-                };
-        }
-    };
+			});
+			if (!ngModel) {
+				return;
+			}
+			ckeditor.on('instanceReady', function() {
+				ckeditor.setData(ngModel.$viewValue);
+			});
+			ckeditor.on('pasteState', function() {
+				scope.$apply(function() {
+					ngModel.$setViewValue(ckeditor.getData());
+				});
+			});
+			ngModel.$render = function(value) {
+				ckeditor.setData(ngModel.$viewValue);
+			};
+		}
+	};
 });

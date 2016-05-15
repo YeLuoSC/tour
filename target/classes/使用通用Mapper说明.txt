@@ -261,3 +261,21 @@ try {
 http://git.oschina.net/free/Mybatis_Utils/tree/master/CameHumpMap  
 
 #[返回首页](http://git.oschina.net/free/Mapper)
+
+CountryMapper mapper = sqlSession.getMapper(CountryMapper.class);
+//查询全部
+List<Country> countryList = mapper.select(new Country());
+//总数
+Assert.assertEquals(183, countryList.size());
+
+//通用Example查询
+Example example = new Example(Country.class);
+example.createCriteria().andGreaterThan("id", 100);
+countryList = mapper.selectByExample(example);
+Assert.assertEquals(83, countryList.size());
+
+//MyBatis-Generator生成的Example查询
+CountryExample example2 = new CountryExample();
+example2.createCriteria().andIdGreaterThan(100);
+countryList = mapper.selectByExample(example2);
+Assert.assertEquals(83, countryList.size());

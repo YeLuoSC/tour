@@ -1,35 +1,36 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>EASY PRIVATE TOUR</title>
-<%String path = request.getContextPath(); %>
+<title>Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Architect Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="<%=path %>/css/front/owl.carousel.css" rel="stylesheet">
 <link href="<%=path %>/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="<%=path %>/css/front/style.css" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="<%=path %>/css/front/swipebox.css">
 <link href="<%=path %>/css/front/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
 <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
+<link href="<%=path %>/css/front/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="<%=path %>/scripts/jquery-1.11.1.min.js"></script>
 <!---- start-smoth-scrolling---->
 <script type="text/javascript" src="<%=path %>/scripts/front/frame/move-top.js"></script>
 <script type="text/javascript" src="<%=path %>/scripts/front/frame/easing.js"></script>
 <!---pop-up-box---->
+<script src="<%=path %>/scripts/front/frame/bootstrap.min.js" type="text/javascript"></script>
 <script src="<%=path %>/scripts/front/frame/jquery.magnific-popup.js" type="text/javascript"></script>
-<script src="<%=path %>/scripts/front/frame/owl.carousel.js"></script>
-<!---//pop-up-box---->
-<script src="<%=path %>/scripts/front/frame/classie.js"></script>
-<script src="<%=path %>/scripts/front/frame/uisearch.js"></script>
-<script src="<%=path %>/scripts/front/frame/jquery.mixitup.min.js"></script>
 <script src="<%=path %>/scripts/front/frame/jquery.swipebox.min.js"></script> 
-<script>
-	new UISearch( document.getElementById( 'sb-search' ) );
-</script>
+<script src="<%=path %>/scripts/front/frame/jquery.mixitup.min.js"></script>
+<script src="<%=path %>/scripts/front/frame/owl.carousel.js"></script>
+<script src="<%=path %>/scripts/back/frame/angular.min.js"></script>
+<script src="<%=path %>/scripts/back/frame/angular-route.min.js"></script>
+<script src="<%=path %>/scripts/back/frame/tm.pagination.js"></script>
+<script src="<%=path %>/scripts/front/index/index.js"></script>
+
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		
@@ -38,23 +39,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 </script>
-<!--start-smoth-scrolling-->
 </head>
-<body>
+<body ng-app="myapp"  ng-controller="myCtrl">
 	<!--header-->
 	<div class="header-top" id="home">
 		<div class="container">
 			<div class="header-logo">
-				<a href="index.html"><img src="<%=path %>/images/front/logo.png" alt=""/></a>
+				<img src="<%=path %>/images/front/logo.png" alt=""/>
 			</div>
 			<div class="top-nav">
 				<span class="menu"><img src="<%=path %>/images/front/menu-icon.png" alt=""/></span>
 				<ul class="nav1">
-					<li><a href="index.do">HOME </a></li>
-					<li><a href="tourinfo.do">BEIJING TOUR</a></li>
-					<li><a href="carRental.do">CAR RENTAL</a></li>
-					<li><a href="kungfu.do">KUNGFU SHOW</a></li>
-					<li><a href="acrobatic.do">ACROBATIC SHOW</a></li>
+					<li><a href="index.do" class="active">TOURISM </a></li>
+					<li><a href="tourinfo.do">TOURINFO</a></li>
+					<li><a href="attraction.do">ATTRACTIONS</a></li>
+					<li>
+
+						<div class="dropdown">
+
+						<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="strange-buildings.html">SHOWS</a>
+
+						<ul class="dropdown-menu tourism_dropmenu">
+							<li><a style="width: 160px;background:none;" href="kong_fu.html">Kong Fu</a></li>
+							<li><a style="width: 160px;background:none;" href="acrobatics.html">Acrobatics</a></li>
+						</ul>
+
+						</div>
+
+					</li>
+					<li><a href="404.html">CAR RENTALS</a></li>
 				</ul>
 				<!-- script-for-menu -->
 				 <script>
@@ -66,75 +79,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</script>
 				<!-- /script-for-menu -->
 			</div>
+
 			<div class="social-icons">
 				<ul>
-					<li><a href="#" title="follow me on twitter"><span class="twit"> </span></a></li>
-					<li><a href="#" title="follow me on facebook"><span class="fb"> </span></a></li>
+					<li><a href="#"><span class="twit"> </span></a></li>
+					<li><a href="#"><span class="fb"> </span></a></li>
 					<li><a href="#"><span class="g"> </span></a></li>
 				</ul>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
-		<div class="search-box">
-			<div id="sb-search" class="sb-search">
-				<form>
-					<input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
-					<input class="sb-search-submit" type="submit" value="">
-					<span class="sb-icon-search"> </span>
-				</form>
-			</div>
-		</div>
-		<div class="header-info-right">
-				<div class="header cbp-spmenu-push">
-					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-							<a href="index.do">HOME</a>
-							<a href="tourinfo.do">BEIJING TOUR</a>
-							<a href="carRental.do">CAR RENTAL</a>
-							<a href="kungfu.do">KUNGFU SHOW</a>
-							<a href="acrobatic.do">ACROBATIC SHOW</a>
-					</nav>
-					<!--script-nav -->	
-					<script>
-						$("span.menu").click(function(){
-							$("ul.navigatoin").slideToggle("300" , function(){
-							});
-						});
-					</script>
-					<script type="text/javascript">
-								jQuery(document).ready(function($) {
-									$(".scroll").click(function(event){		
-										event.preventDefault();
-										$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-									});
-								});
-					</script>
-					<div class="clearfix"> </div>
-						<!-- /script-nav -->
-									<div class="main">
-										<section class="buttonset">
-											<button id="showLeftPush"><img src="<%=path %>/images/front/menu.png" /><span>Menu</span></button>
-										</section>
-									</div>
-									
-									<script>
-										var	menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-											showLeftPush = document.getElementById( 'showLeftPush' ),
-											body = document.body;
-							
-										showLeftPush.onclick = function() {
-																				classie.toggle( this, 'active' );
-																				classie.toggle( body, 'cbp-spmenu-push-toright' );
-																				classie.toggle( menuLeft, 'cbp-spmenu-open' );
-																				disableOther( 'showLeftPush' );
-																			};
-									</script>
-				</div>
-			</div>
 	</div>
-	<!--//header-->
-	
-	<!--banner-->
-    <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >免费模板</a></div>
+	<%--<div ng-view></div>--%>
+	<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >免费模板</a></div>
 	<div class="banner">
 		<div class="container">
 			<div class="banner-top">
@@ -149,8 +106,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--banner-->
 	<!--slide-->
 	<div class="gallery-cursual">
-		<!-- requried-jsfiles-for owl -->
-		<link href="<%=path %>/css/front/owl.carousel.css" rel="stylesheet">
 			<script>
 				$(document).ready(function() {
 					$("#owl-demo").owlCarousel({
@@ -322,28 +277,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 				</script>	
 		</div>
-		<!-- /caption-popup -->
-		
 	<!--slide-->
 	<!--address-->
-	<div class="address">
-		<div class="container">
-			<div class="address-top">
-				<p>Leave your Ads Here</p>
-			</div>
-		</div>
-	</div>
+
 	<!--address-->
 	<!--articles-->
 	<div class="articles">
-		<div class="container">
+		<div class="container" style="padding-top: 10px;">
 			<div class="articles-top">
-				<div class="col-md-4 articles-left">
-					<div class="art-one">
-						<a href="single.html"><img src="<%=path %>/images/front/art-1.jpg" alt="" /></a>
+				<div class="col-md-4 articles-left" ng-repeat="x in data">
+					<div class="art-one" >
+						<a href="detailInfo/getTourLineDetailInfo.do?tourLineId={{x.tourLineId}}"><img src="{{x.thumbnail}}" alt="" /></a>
 						<div class="art-btm">
-							<a href="single.html"><h3>Vanglo House By LWPAC in Canda</h3></a>
-							<p>Amazing Gabion Ideas for Outdoors A Gabion is a cage box or cylinder filled with rocks, concrete, or sometimes sand and soil and It is a great way to decorate your outdoor</p>
+							<a href="detailInfo/getTourLineDetailInfo.do?tourLineId={{x.tourLineId}}""><h3>{{x.tourLineName}}</h3></a>
+							<p>{{x.summary}}</p>
 							<ul>
 								<li><a href="#"><span class="fb"> </span></a><label>21</label></li>
 								<li><a href="#"><span class="twit"> </span></a><label>12</label></li>
@@ -352,7 +299,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</ul>
 						</div>
 					</div>
-					<div class="art-one sponser">
+					<%--<div class="art-one sponser">
 						<a href="single.html"><img src="<%=path %>/images/front/art-3.jpg" alt="" /></a>
 						<div class="art-btm">
 							<a href="single.html"><h3>Vanglo House By LWPAC in Canda</h3></a>
@@ -366,7 +313,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h6>Sponsered</h6>
 						</div>
 					</div>
-					<div class="art-one">
+					--%><%--<div class="art-one">
 						<a href="single.html"><img src="<%=path %>/images/front/art-5.jpg" alt="" /></a>
 						<div class="art-btm">
 							<a href="single.html"><h3>Vanglo House By LWPAC in Canda</h3></a>
@@ -379,8 +326,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</ul>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-4 articles-left">
+				--%></div>
+				<%--<div class="col-md-4 articles-left">
 					<div class="art-one">
 						<a href="single.html"><img src="<%=path %>/images/front/art-2.jpg" alt="" /></a>
 						<div class="art-btm">
@@ -421,8 +368,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 articles-left">
-					<h4>MOST POPULAR VIEW SPOT IN BEIJING</h4>
+				--%><%--<div class="col-md-4 articles-left">
+					<h4>THE TOP TOURISM</h4>
 					<div class="week">
 						<div class="col-md-6 week-left">
 							<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
@@ -584,22 +531,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="clearfix"></div>
 			</div>
-			<div class="clearfix"></div>
-			<div class="load">
+			--%><div class="clearfix"></div>
+			<%--<div class="load">
 				<a href="#" class="hvr-shutter-out-horizontal">Load More Articles</a>
 			</div>
-		</div>
+		--%></div>
 	</div>
 	</div>
-	<!--articles-->
 	
+	<!--//header-->
+	<!--search-scripts-->
+					<!--<script src="js/classie.js"></script>-->
+					<!--<script src="js/uisearch.js"></script>-->
+						<!--<script>-->
+							<!--new UISearch( document.getElementById( 'sb-search' ) );-->
+						<!--</script>-->
+	<!--//search-scripts-->
+	<!--banner-->
+    
+	<!--articles-->
 	    <script type="text/javascript">
 			jQuery(function($) {
 				$(".swipebox").swipebox();
 			});
 		</script>
-	<!-- Portfolio Ends Here -->
-	
 <script type="text/javascript">
 $(function () {
 	
@@ -644,20 +599,20 @@ $(function () {
 });	
 </script>
 	<!--advertisement-->
-	<div class="add">
-		<div class="container">
-			<div class="add-top">
-				<div class="col-md-10 add-left">
-					<p>Leave your Ads Here</p>
-				</div>
-				<div class="col-md-2 add-right">
-					<img src="<%=path %>/images/front/add.png" alt="" />
-					<h3>Advertisement</h3>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
+	<!--<div class="add">-->
+		<!--<div class="container">-->
+			<!--<div class="add-top">-->
+				<!--<div class="col-md-10 add-left">-->
+					<!--<p>Leave your Ads Here</p>-->
+				<!--</div>-->
+				<!--<div class="col-md-2 add-right">-->
+					<!--<img src="/images/front/add.png" alt="" />-->
+					<!--<h3>Advertisement</h3>-->
+				<!--</div>-->
+				<!--<div class="clearfix"></div>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
 	<!--advertisement-->
 	<!--read-->
 	<div class="read">
@@ -750,7 +705,7 @@ $(function () {
 		<div class="container">
 			<div class="footer-top">
 				<div class="col-md-6 footer-left">
-					<p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></p>
+					<p>Copyright &copy; 2015.CusTour All rights reserved.</a></p>
 				</div>
 				<div class="col-md-6 footer-right">
 					<a href="index.html"><img src="<%=path %>/images/front/lg.png" alt="" /></a>
@@ -775,6 +730,8 @@ $(function () {
 								</script>
 		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	</div>
+
+
 	<!--footer-->
 </body>
 </html>

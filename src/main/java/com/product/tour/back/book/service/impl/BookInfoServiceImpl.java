@@ -1,5 +1,6 @@
 package com.product.tour.back.book.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,7 @@ public class BookInfoServiceImpl implements IBookInfoService{
 
 	@Override
 	public BookInfoPO add_tx(BookInfoPO bookInfoPO) {
+		bookInfoPO.setCreateDate(new Date());
 		bookInfoMapper.insert(bookInfoPO);
 		return bookInfoPO;
 	}

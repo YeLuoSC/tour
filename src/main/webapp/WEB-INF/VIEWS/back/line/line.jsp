@@ -68,6 +68,7 @@
 									<td><span ng-if="x.visiable=='1'">可见</span><span ng-if="x.visiable=='0'">不可见</span></td>
 						    		<td>
 						    			<span class="btn btn-primary btn-xs" title="编辑" ng-click="showUpdateWin(x)" ng-if="!x.editable"><i class="glyphicon glyphicon-pencil"></i></span>
+						    			<span class="btn btn-primary btn-xs" title="界面预览" ng-click="preview(x.tourLineId)"><i class="glyphicon glyphicon-eye-open"></i></span>
 						    		</td>
 						    	</tr>
 						    </tbody>

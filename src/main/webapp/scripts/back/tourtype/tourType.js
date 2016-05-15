@@ -96,7 +96,7 @@ app.service('tourTypeService',function($http){
 		angular.forEach(arr, function(po,index,array){
 			 //data等价于array[index]
 			if(po.isSelected == true){
-				idArr.push(po.id);
+				idArr.push(po.tourTypeId);
 			}
 		});
 		if(idArr.length > 0){

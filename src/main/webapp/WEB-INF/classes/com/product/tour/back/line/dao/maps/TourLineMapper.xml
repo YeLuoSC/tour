@@ -6,7 +6,7 @@
 <mapper namespace="com.product.tour.back.line.dao.TourLineMapper">  
 	
  	<resultMap type="com.product.tour.back.line.po.TourLinePO" id="tourLinePO">
- 		<id column="tourlineid" property="tourlineid"/>
+ 		<id column="tourlineid" property="tourLineId"/>
  		<result column="tourLineName" property="tourLineName"/>
  		<result column="status" property="status"/>
  		<result column="price" property="price"/>
@@ -18,7 +18,7 @@
  		<result column="tourtypeid" property="tourTypeId"/>
  		<result column="thumbnail" property="thumbnail"/>
  		<association property="tourTypePO" javaType="com.product.tour.back.tourtype.po.TourTypePO">
- 			<id column="tourtypeid" property="tourtypeid"/>
+ 			<id column="tourtypeid" property="tourTypeId"/>
  			<result column="status" property="status"/>
  			<result column="tourTypeName" property="tourTypeName"/>
  		</association>
@@ -34,7 +34,7 @@
     </select>
     
     <select id="getTourLineByTourLineId" resultMap="tourLinePO">
-    	select t1.*,t2.* from tou_t_tourline t1,tou_t_tourtype t2 where t1.tourtypeid=t2.tourtypeid and t1.tourlineid=#{tourLineId}
+    	select t1.tourlineid,t1.tourlinename,t1.price,t1.status,date_format(t1.startdate,'%Y-%m-%d') startdate,t1.summary,t1.info,t1.orderid,t1.visiable,t1.thumbnail ,t2.tourtypeid,t2.TOURTYPENAME from tou_t_tourline t1,tou_t_tourtype t2 where t1.tourtypeid=t2.tourtypeid and t1.tourlineid=#{tourLineId}
     </select>
     
 </mapper>  

@@ -7,7 +7,7 @@
 	
  
     <select id="deleteTourType">  
-       update tou_t_tourtype set status='2' where id in <foreach collection="idList" item="id" separator="," open="(" close=")">#{id}</foreach>
+       update tou_t_tourtype set status='2' where tourtypeid in <foreach collection="idList" item="id" separator="," open="(" close=")">#{id}</foreach>
     </select>  
 
        

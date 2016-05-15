@@ -1,5 +1,7 @@
 package com.product.tour.back.book.po;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,10 +10,12 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import tk.mybatis.mapper.annotation.NameStyle;
 import tk.mybatis.mapper.code.Style;
 
+import com.product.common.jackson.CustomDateSerializer;
 import com.product.tour.back.attraction.po.AttractionPO;
 import com.product.tour.back.line.po.TourLinePO;
 @NameStyle(Style.normal)
@@ -60,6 +64,9 @@ public class BookInfoPO {
 	
 	@Column(name="status")
 	private String status;
+	
+	@Column(name="createDate")
+	private Date createDate;
 
 	/**
 	 * 根据bookType值不同，显示对应的路线或者景点名称
@@ -176,6 +183,16 @@ public class BookInfoPO {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@JsonSerialize(using = CustomDateSerializer.class)
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	
 	
 	
 }
